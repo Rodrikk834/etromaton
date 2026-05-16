@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://ctciwf5uabn6l"]
 
-[ext_resource type="Script" uid="uid://dwvveni5viii0" path="res://worldGenController.gd" id="1_6r1qt"]
+[ext_resource type="Script" uid="uid://dwvveni5viii0" path="res://scripts/worldGenController.gd" id="1_6r1qt"]
 
 [sub_resource type="FastNoiseLite" id="FastNoiseLite_6r1qt"]
 
