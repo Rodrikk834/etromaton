@@ -1,8 +1,19 @@
 [gd_scene format=3 uid="uid://ctciwf5uabn6l"]
 
-[ext_resource type="Script" uid="uid://dwvveni5viii0" path="res://scripts/worldGenController.gd" id="1_6r1qt"]
+[ext_resource type="PackedScene" uid="uid://b3asmb7bybdy7" path="res://scenes/rooms/room_1.tscn" id="1_6r1qt"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_abh30"]
 
 [node name="Node2D" type="Node2D" unique_id=97602548]
 
 [node name="rooms" type="Node2D" parent="." unique_id=301781827]
-script = ExtResource("1_6r1qt")
+
+[node name="Room1" parent="rooms" unique_id=25791557 instance=ExtResource("1_6r1qt")]
+
+[node name="CharacterBody2D" type="CharacterBody2D" parent="." unique_id=1728922544]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="CharacterBody2D" unique_id=426917745]
+shape = SubResource("RectangleShape2D_abh30")
+
+[node name="Camera2D" type="Camera2D" parent="CharacterBody2D" unique_id=541668886]
+zoom = Vector2(10, 10)
