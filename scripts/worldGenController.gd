@@ -2,8 +2,8 @@ extends Node
 class_name WorldGenerator
 
 @export_category("Configuración de Generación")
-@export var semilla_inicial : int = 3
-@export var limite_cuartos : int = 100
+@export var semilla_inicial : int = 1
+@export var limite_cuartos : int = 20
 
 @export_category("Configuración de Pasillos (A*)")
 @export var max_length_corridor : int = 5
@@ -12,10 +12,10 @@ class_name WorldGenerator
 @export var escenas_iniciales : Array[PackedScene] = []
 @export var escenas_cuartos : Array[PackedScene] = []
 
-@export var categorias_especiales : Array[Array] = [] 
+@export var categorias_especiales : Array[CategoriaCuarto] = []
 @export var escenas_relleno : Array[PackedScene] = []
 
-@export_category("Configuración Visual")
+@export_category("Configuración Visual (Fallback)")
 @export var id_source_muros : int = 1
 @export var muro_arriba : Vector2i = Vector2i(0, 1)
 @export var muro_abajo : Vector2i = Vector2i(1, 0)
@@ -24,8 +24,8 @@ class_name WorldGenerator
 @export var id_source_piso : int = 1
 @export var atlas_piso_sellado : Vector2i = Vector2i(0, 4)
 
-@onready var mapa_piso = $floors
-@onready var mapa_muros = $walls
+@onready var mapa_piso = $NavigationRegion2D/floors
+@onready var mapa_muros = $NavigationRegion2D/walls
 
 var rng := RandomNumberGenerator.new()
 var grid : Dictionary = {}
@@ -56,9 +56,10 @@ func preparar_catalogo():
 	
 	base_de_datos_especiales.clear()
 	for categoria in categorias_especiales:
-		var categoria_procesada = _procesar_array_escenas(categoria)
-		if categoria_procesada.size() > 0:
-			base_de_datos_especiales.append(categoria_procesada)
+		if categoria != null and categoria.variantes.size() > 0:
+			var categoria_procesada = _procesar_array_escenas(categoria.variantes)
+			if categoria_procesada.size() > 0:
+				base_de_datos_especiales.append(categoria_procesada)
 
 func _procesar_array_escenas(array_escenas: Array) -> Array:
 	var base_datos = []
@@ -67,7 +68,11 @@ func _procesar_array_escenas(array_escenas: Array) -> Array:
 		if escena is PackedScene: 
 			var cuarto_temp = escena.instantiate()
 			if cuarto_temp.has_method("exportar_datos_matematicos"):
-				base_datos.append(cuarto_temp.exportar_datos_matematicos(i))
+				var datos = cuarto_temp.exportar_datos_matematicos(i)
+				if datos.puertas.size() > 0:
+					base_datos.append(datos)
+				else:
+					push_warning("Cuarto sin puertas ignorado: " + cuarto_temp.name)
 			cuarto_temp.queue_free()
 	return base_datos
 
@@ -154,10 +159,20 @@ func _registrar_cuarto_en_grid(datos_cuarto: Dictionary, posicion_global_cuarto:
 
 	for puerta_local in datos_cuarto.puertas:
 		if puerta_local.posicion_local == pos_puerta_ignorada: continue
+		
+		var p_global = posicion_global_cuarto + puerta_local.posicion_local
+		var pos_adentro = p_global - puerta_local.direccion
+		var piso_heredado = null
+		
+		if grid.has(pos_adentro) and grid[pos_adentro].has("floors"):
+			piso_heredado = grid[pos_adentro]["floors"]
+		
 		puertas_pendientes.append({
-			"posicion_global": posicion_global_cuarto + puerta_local.posicion_local,
+			"posicion_global": p_global,
 			"direccion": puerta_local.direccion,
-			"id_cuarto": contador_instancias 
+			"id_cuarto": contador_instancias,
+			"estilo_piso": piso_heredado,
+			"estilo_muros": datos_cuarto["estilo_muros"]
 		})
 	cuartos_generados += 1
 
@@ -189,17 +204,42 @@ func _construir_pasillos_astar():
 	while puertas_pendientes.size() >= 2:
 		var pA = puertas_pendientes.pop_front()
 		
-		var pB_index = -1
-		var min_dist = INF
+		var candidatos_validos = []
 		
 		for i in range(puertas_pendientes.size()):
-			if pA.id_cuarto == puertas_pendientes[i].id_cuarto:
+			var pB = puertas_pendientes[i]
+			if pA.id_cuarto == pB.id_cuarto: continue
+				
+			var dist_manhattan = abs(pA.posicion_global.x - pB.posicion_global.x) + abs(pA.posicion_global.y - pB.posicion_global.y)
+			
+			if dist_manhattan > max_length_corridor:
 				continue
 				
-			var dist = pA.posicion_global.distance_squared_to(puertas_pendientes[i].posicion_global)
-			if dist < min_dist:
-				min_dist = dist
+			candidatos_validos.append({"index": i, "dist": dist_manhattan})
+			
+		candidatos_validos.sort_custom(func(a, b): return a.dist < b.dist)
+		
+		var pB_index = -1
+		var best_path = []
+		
+		for cand in candidatos_validos:
+			var i = cand.index
+			var pB = puertas_pendientes[i]
+			
+			var inicio_fuera = Vector2i((pA.posicion_global + pA.direccion).round())
+			var fin_fuera = Vector2i((pB.posicion_global + pB.direccion).round())
+			
+			astar_grid.set_point_solid(Vector2i(pA.posicion_global.round()), false)
+			astar_grid.set_point_solid(Vector2i(pB.posicion_global.round()), false)
+			astar_grid.set_point_solid(inicio_fuera, false)
+			astar_grid.set_point_solid(fin_fuera, false)
+			
+			var test_path = astar_grid.get_id_path(inicio_fuera, fin_fuera)
+			
+			if not test_path.is_empty() and test_path.size() <= max_length_corridor:
+				best_path = test_path
 				pB_index = i
+				break 
 				
 		if pB_index == -1:
 			puertas_aisladas.append(pA)
@@ -207,84 +247,90 @@ func _construir_pasillos_astar():
 			
 		var pB = puertas_pendientes.pop_at(pB_index)
 		
-		var inicio = Vector2i(pA.posicion_global)
-		var fin = Vector2i(pB.posicion_global)
-		var inicio_fuera = Vector2i(pA.posicion_global + pA.direccion)
-		var fin_fuera = Vector2i(pB.posicion_global + pB.direccion)
+		var inicio = Vector2i(pA.posicion_global.round())
+		var fin = Vector2i(pB.posicion_global.round())
 		
-		astar_grid.set_point_solid(inicio, false)
-		astar_grid.set_point_solid(fin, false)
-		astar_grid.set_point_solid(inicio_fuera, false)
-		astar_grid.set_point_solid(fin_fuera, false)
+		var piso_usar = pA.estilo_piso if pA.estilo_piso != null else {
+			"source_id": id_source_piso, "atlas_coords": atlas_piso_sellado, "alternative_tile": 0
+		}
 		
-		var path = astar_grid.get_id_path(inicio_fuera, fin_fuera)
-		
-		# --- NUEVO CONSTRAINT: Límite de Longitud ---
-		# Si no hay camino O la ruta es mayor a la longitud máxima permitida, se sella.
-		if path.is_empty() or path.size() > max_length_corridor:
-			puertas_aisladas.append(pA)
-			puertas_aisladas.append(pB)
-		else:
-			var camino_completo = [inicio] + Array(path) + [fin]
-			for punto in camino_completo:
-				for x in range(-1, 2):
-					for y in range(-1, 2):
-						var pos_pasillo = Vector2(punto.x + x, punto.y + y)
-						if not grid.has(pos_pasillo): grid[pos_pasillo] = {}
-						if not grid[pos_pasillo].has("floors"):
-							grid[pos_pasillo]["floors"] = {
-								"source_id": id_source_piso, "atlas_coords": atlas_piso_sellado, "alternative_tile": 0
-							}
-							celdas_pasillo.append(pos_pasillo)
+		var camino_completo = [inicio] + Array(best_path) + [fin]
+		for punto in camino_completo:
+			for x in range(-1, 2):
+				for y in range(-1, 2):
+					var pos_pasillo = Vector2(punto.x + x, punto.y + y)
+					if not grid.has(pos_pasillo): grid[pos_pasillo] = {}
+					
+					# --- ¡EL FIX DEL MURO FANTASMA! ---
+					# Destruimos la pared vieja para que el pasillo quede abierto
+					if grid[pos_pasillo].has("walls"):
+						grid[pos_pasillo].erase("walls")
+						
+					if not grid[pos_pasillo].has("floors"):
+						grid[pos_pasillo]["floors"] = piso_usar
+						celdas_pasillo.append({
+							"pos": pos_pasillo,
+							"muros": pA.estilo_muros
+						})
 
 	puertas_pendientes = puertas_aisladas + puertas_pendientes
 	
-	for pos in celdas_pasillo:
-		_evaluar_y_colocar_muro_pasillo(pos, Vector2.UP, muro_arriba)
-		_evaluar_y_colocar_muro_pasillo(pos, Vector2.DOWN, muro_abajo)
-		_evaluar_y_colocar_muro_pasillo(pos, Vector2.LEFT, muro_izquierda)
-		_evaluar_y_colocar_muro_pasillo(pos, Vector2.RIGHT, muro_derecha)
+	for celda_info in celdas_pasillo:
+		var pos = celda_info.pos
+		var muros = celda_info.muros
+		var s_id = muros.source_id
+		
+		_evaluar_y_colocar_muro_pasillo(pos, Vector2.UP, s_id, muros.arriba)
+		_evaluar_y_colocar_muro_pasillo(pos, Vector2.DOWN, s_id, muros.abajo)
+		_evaluar_y_colocar_muro_pasillo(pos, Vector2.LEFT, s_id, muros.izquierda)
+		_evaluar_y_colocar_muro_pasillo(pos, Vector2.RIGHT, s_id, muros.derecha)
 
-func _evaluar_y_colocar_muro_pasillo(pos: Vector2, dir: Vector2, atlas_muro: Vector2i):
+func _evaluar_y_colocar_muro_pasillo(pos: Vector2, dir: Vector2, id_source: int, atlas_muro: Vector2i):
 	var vecino = pos + dir
 	if not grid.has(vecino) or not grid[vecino].has("floors"):
 		grid[pos]["walls"] = {
-			"source_id": id_source_muros,
+			"source_id": id_source,
 			"atlas_coords": atlas_muro,
 			"alternative_tile": 0
 		}
 
 func _sellar_puertas_sobrantes():
 	for puerta in puertas_pendientes:
+		var estilo_muros = puerta.estilo_muros
+		var id_source = estilo_muros.source_id
 		var atlas_muro : Vector2i
 		var perp : Vector2
 		var offset_correccion := Vector2.ZERO
 		
-		match puerta.direccion:
-			Vector2.UP:
-				atlas_muro = muro_arriba
+		var dir_i = Vector2i(puerta.direccion.round())
+		
+		match dir_i:
+			Vector2i.UP:
+				atlas_muro = estilo_muros.arriba
 				perp = Vector2.RIGHT
 				offset_correccion = Vector2(0, 1)
-			Vector2.DOWN:
-				atlas_muro = muro_abajo
+			Vector2i.DOWN:
+				atlas_muro = estilo_muros.abajo
 				perp = Vector2.RIGHT
-			Vector2.LEFT:
-				atlas_muro = muro_izquierda
+			Vector2i.LEFT:
+				atlas_muro = estilo_muros.izquierda
 				perp = Vector2.DOWN
 				offset_correccion = Vector2(1, 0)
-			Vector2.RIGHT:
-				atlas_muro = muro_derecha
+			Vector2i.RIGHT:
+				atlas_muro = estilo_muros.derecha
 				perp = Vector2.DOWN
+		
+		var piso_usar = puerta.estilo_piso if puerta.estilo_piso != null else {
+			"source_id": id_source_piso, "atlas_coords": atlas_piso_sellado, "alternative_tile": 0
+		}
 		
 		for i in range(-1, 2):
 			var pos_relleno = puerta.posicion_global + (perp * i) + offset_correccion
 			if not grid.has(pos_relleno): grid[pos_relleno] = {}
 			if not grid[pos_relleno].has("floors"):
-				grid[pos_relleno]["floors"] = {
-					"source_id": id_source_piso, "atlas_coords": atlas_piso_sellado, "alternative_tile": 0
-				}
+				grid[pos_relleno]["floors"] = piso_usar
 			grid[pos_relleno]["walls"] = {
-				"source_id": id_source_muros, "atlas_coords": atlas_muro, "alternative_tile": 0
+				"source_id": id_source, "atlas_coords": atlas_muro, "alternative_tile": 0
 			}
 	puertas_pendientes.clear()
 
