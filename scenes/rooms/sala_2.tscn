@@ -1,7 +1,8 @@
-[gd_scene format=4 uid="uid://faohgt32o8qp"]
+[gd_scene format=4 uid="uid://dpk0recxmr47i"]
 
 [ext_resource type="Texture2D" uid="uid://bdi0k2vwuo0gu" path="res://tiles/Tileset - Jueguito.png" id="1_pnmvt"]
-[ext_resource type="Script" uid="uid://bj2duf5m1vbh0" path="res://scripts/readRoom.gd" id="1_uxh4i"]
+[ext_resource type="Script" path="res://scripts/readRoom.gd" id="1_uxh4i"]
+[ext_resource type="TileSet" uid="uid://c45qxqrc7o51y" path="res://tiles/muebles.tres" id="3_5me28"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_pnmvt"]
 texture = ExtResource("1_pnmvt")
@@ -173,6 +174,13 @@ position = Vector2(-8, -8)
 tile_map_data = PackedByteArray("AAD7/wQAAQAAAAMAAAD7//7/AQAAAAMAAAD7/wAAAQAAAAIAAAD7//n/AQAAAAIAAAD+//f/AQAAAAIAAAACAPf/AQABAAIAAAACAP3/AQABAAIAAAACAAIAAQABAAMAAAD//wQAAQABAAMAAAACAPv/AQABAAMAAAD7//r/AQABAAEAAAD7//v/AQABAAEAAAD7//z/AQABAAEAAAD7//3/AQABAAEAAAD+//j/AQABAAEAAAD/////AQABAAEAAAAAAAIAAQABAAAAAAABAAIAAQABAAAAAAD8//7/AQABAAAAAAD9//7/AQABAAAAAAD+//7/AQABAAAAAAD+//v/AQABAAAAAAD///v/AQABAAAAAAAAAPv/AQABAAAAAAABAPv/AQABAAAAAAD9//z/AQAAAAAAAAACAP7/AQAAAAAAAAACAP//AQAAAAAAAAACAAAAAQAAAAAAAAACAAEAAQAAAAAAAAD//wMAAQAAAAAAAAD8/wAAAQAAAAEAAAD9/wAAAQAAAAEAAAD+/wAAAQAAAAEAAAD+//3/AQAAAAEAAAD///3/AQAAAAEAAAAAAP3/AQAAAAEAAAABAP3/AQAAAAEAAAD8//n/AQAAAAEAAAD9//n/AQAAAAEAAAA=")
 tile_set = SubResource("TileSet_fbhgj")
 
+[node name="furniture" type="TileMapLayer" parent="." unique_id=1761682207]
+z_index = 1
+texture_filter = 5
+position = Vector2(-8, -8)
+tile_map_data = PackedByteArray("AAAAAPv/AAAFAAMAAAABAPv/AAAGAAMAAAABAAIAAAAFAAMAAAACAAIAAAAGAAMAAAD8/wAAAAAAAAAAAAD9/wAAAAABAAAAAAD//wQAAAACAAAAAAD7/wQAAAACAAAAAAACAP3/AAACAAAAAAD7//7/AAACAAAAAAD7//v/AAAGAAAAAGD7//r/AAAHAAAAAGACAP//AAAGAAAAAFACAAAAAAAHAAAAAFD+//f/AAACAAAAAAACAPf/AAACAAAAAAA=")
+tile_set = ExtResource("3_5me28")
+
 [node name="doors" type="Node2D" parent="." unique_id=678985248]
 
 [node name="door1" type="Marker2D" parent="doors" unique_id=478711765]
@@ -189,3 +197,16 @@ rotation = 4.712389
 
 [node name="door4" type="Marker2D" parent="doors" unique_id=385439598]
 position = Vector2(40, -112)
+
+[node name="containers" type="Node2D" parent="." unique_id=1607877414]
+
+[node name="container1" type="Marker2D" parent="containers" unique_id=1640193426]
+position = Vector2(-80, -56)
+
+[node name="container2" type="Marker2D" parent="containers" unique_id=2617997]
+position = Vector2(-56, -104)
+rotation = 4.712389
+
+[node name="container3" type="Marker2D" parent="containers" unique_id=1354104177]
+position = Vector2(-16, 40)
+rotation = 3.1415927

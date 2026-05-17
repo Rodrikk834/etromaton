@@ -1,7 +1,8 @@
-[gd_scene format=4 uid="uid://bflx0h12f3t8l"]
+[gd_scene format=4 uid="uid://ddhyccgiosub6"]
 
-[ext_resource type="Script" uid="uid://bj2duf5m1vbh0" path="res://scripts/readRoom.gd" id="1_kx2hd"]
+[ext_resource type="Script" path="res://scripts/readRoom.gd" id="1_kx2hd"]
 [ext_resource type="Texture2D" uid="uid://bdi0k2vwuo0gu" path="res://tiles/Tileset - Jueguito.png" id="1_mpqr3"]
+[ext_resource type="TileSet" uid="uid://c45qxqrc7o51y" path="res://tiles/muebles.tres" id="3_bkduh"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_mpqr3"]
 texture = ExtResource("1_mpqr3")
@@ -177,6 +178,13 @@ position = Vector2(-8, -8)
 tile_map_data = PackedByteArray("AAD+/wUAAQAGAAMAAAD+/wEAAQAGAAMAAAAFAAUAAQAHAAMAAAAFAAEAAQAHAAIAAAACAPz/AQAHAAIAAAD+//z/AQAGAAIAAAD+/wQAAQAGAAIAAAACAAAAAQAGAAAAAAADAAEAAQAGAAEAAAAEAAEAAQAGAAEAAAD///z/AQAGAAEAAAAAAPz/AQAGAAEAAAABAPz/AQAGAAEAAAD//wQAAQAGAAEAAAD+/wAAAQAHAAEAAAAAAAIAAQAHAAEAAAAAAAMAAQAHAAEAAAD//wEAAQAHAAAAAAD//wUAAQAHAAAAAAAAAAUAAQAHAAAAAAABAAUAAQAHAAAAAAACAAUAAQAHAAAAAAADAAUAAQAHAAAAAAAEAAUAAQAHAAAAAAA=")
 tile_set = SubResource("TileSet_gkdwr")
 
+[node name="furniture" type="TileMapLayer" parent="." unique_id=463337138]
+z_index = 1
+texture_filter = 5
+position = Vector2(-8, -8)
+tile_map_data = PackedByteArray("AAADAAUAAAAAAAAAAAAEAAUAAAABAAAAAAAFAAUAAAACAAAAAAADAAEAAAADAAIAAAAEAAEAAAAEAAIAAAABAAIAAAADAAAAAAABAAMAAAADAAEAAAACAAIAAAAEAAAAAAACAAMAAAAEAAEAAAADAAIAAAAFAAAAAAADAAMAAAAFAAEAAAD///7/AAADAAAAAAD/////AAADAAEAAAAAAP7/AAAAAAAAAFAAAP//AAABAAAAAFABAP7/AAAFAAAAAAABAP//AAAFAAEAAAD+/wEAAAACAAAAAAD+//z/AAACAAAAAAACAPz/AAACAAAAAAAAAAMAAAAGAAAAAGAAAAIAAAAHAAAAAGA=")
+tile_set = ExtResource("3_bkduh")
+
 [node name="doors" type="Node2D" parent="." unique_id=519746943]
 
 [node name="door1" type="Marker2D" parent="doors" unique_id=1723976195]
@@ -188,3 +196,8 @@ position = Vector2(88, 48)
 [node name="door3" type="Marker2D" parent="doors" unique_id=528075514]
 position = Vector2(-40, -32)
 rotation = 3.1415927
+
+[node name="containers" type="Node2D" parent="." unique_id=329065027]
+
+[node name="container1" type="Marker2D" parent="containers" unique_id=1764364987]
+position = Vector2(-24, 72)

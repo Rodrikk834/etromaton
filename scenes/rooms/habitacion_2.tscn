@@ -1,7 +1,8 @@
-[gd_scene format=4 uid="uid://15cn32x8o1mr"]
+[gd_scene format=4 uid="uid://c7r61akyupplm"]
 
-[ext_resource type="Script" uid="uid://bj2duf5m1vbh0" path="res://scripts/readRoom.gd" id="1_0m3x7"]
+[ext_resource type="Script" path="res://scripts/readRoom.gd" id="1_0m3x7"]
 [ext_resource type="Texture2D" uid="uid://bdi0k2vwuo0gu" path="res://tiles/Tileset - Jueguito.png" id="1_ging1"]
+[ext_resource type="TileSet" uid="uid://c45qxqrc7o51y" path="res://tiles/muebles.tres" id="3_j5wel"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_0m3x7"]
 texture = ExtResource("1_ging1")
@@ -173,7 +174,20 @@ position = Vector2(-8, -8)
 tile_map_data = PackedByteArray("AAD//wQAAQAAAAMAAAD8/wIAAQAAAAMAAAADAAQAAQABAAMAAAACAP7/AQABAAMAAAD8//3/AQAAAAIAAAD+//v/AQAAAAIAAAACAPv/AQABAAIAAAADAAAAAQABAAIAAAAAAAQAAQABAAAAAAABAAQAAQABAAAAAAACAAQAAQABAAAAAAD9//3/AQAAAAEAAAACAPz/AQAAAAAAAAACAP3/AQAAAAAAAAD///v/AQAAAAEAAAAAAPv/AQAAAAEAAAABAPv/AQAAAAEAAAD+//z/AQABAAEAAAD8//7/AQABAAEAAAD8////AQABAAEAAAD8/wAAAQABAAEAAAD8/wEAAQABAAEAAAD//wMAAQABAAEAAAAAAP//AQAAAAAAAAABAP7/AQABAAAAAAABAAAAAQAAAAEAAAACAAAAAQAAAAEAAAD9/wIAAQABAAAAAAD+/wIAAQABAAAAAAA=")
 tile_set = SubResource("TileSet_canht")
 
+[node name="furniture" type="TileMapLayer" parent="." unique_id=1300607629]
+z_index = 1
+texture_filter = 5
+position = Vector2(-8, -8)
+tile_map_data = PackedByteArray("AAABAPv/AAAAAAEAAAABAPz/AAAAAAIAAAABAP3/AAAAAAMAAAACAPv/AAABAAEAAAACAPz/AAABAAIAAAACAP3/AAABAAMAAAD+//v/AAAGAAEAAAD///v/AAAHAAEAAAD8/wAAAAAGAAAAAGD8////AAAHAAAAAGAAAAQAAAAHAAAAADABAAQAAAAGAAAAADADAAAAAAACAAEAAFACAAAAAAACAAIAAFABAAAAAAACAAMAAFD//wQAAAACAAAAAAD8/wIAAAACAAAAAAA=")
+tile_set = ExtResource("3_j5wel")
+
 [node name="doors" type="Node2D" parent="." unique_id=300328466]
 
 [node name="door1" type="Marker2D" parent="doors" unique_id=287374122]
 position = Vector2(56, 32)
+
+[node name="containers" type="Node2D" parent="." unique_id=1277549189]
+
+[node name="container1" type="Marker2D" parent="containers" unique_id=1180810733]
+position = Vector2(-8, -16)
+rotation = 3.1415927

@@ -1,8 +1,9 @@
-[gd_scene format=4 uid="uid://dgdgj45sj8vc4"]
+[gd_scene format=4 uid="uid://cka2btgitogwj"]
 
 [ext_resource type="Texture2D" uid="uid://bdi0k2vwuo0gu" path="res://tiles/Tileset - Jueguito.png" id="1_0qu84"]
-[ext_resource type="Script" uid="uid://bj2duf5m1vbh0" path="res://scripts/readRoom.gd" id="1_ydxyi"]
-[ext_resource type="TileSet" uid="uid://tir6tddggwiu" path="res://tiles/hola.tres" id="3_g3r16"]
+[ext_resource type="Script" path="res://scripts/readRoom.gd" id="1_ydxyi"]
+[ext_resource type="TileSet" uid="uid://cxmscnrbinfcj" path="res://tiles/hola.tres" id="3_g3r16"]
+[ext_resource type="TileSet" uid="uid://c45qxqrc7o51y" path="res://tiles/muebles.tres" id="4_vcp7c"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_0qu84"]
 texture = ExtResource("1_0qu84")
@@ -82,6 +83,7 @@ physics_layer_0/collision_layer = 1
 sources/1 = SubResource("TileSetAtlasSource_0qu84")
 
 [node name="cocina_2" type="Node2D" unique_id=2030511561]
+texture_filter = 2
 script = ExtResource("1_ydxyi")
 muro_arriba = Vector2i(2, 1)
 muro_abajo = Vector2i(3, 0)
@@ -101,16 +103,33 @@ position = Vector2(-8, -8)
 tile_map_data = PackedByteArray("AAD5////AQACAAIAAAD9//v/AQACAAIAAAABAPv/AQADAAIAAAADAAMAAQADAAIAAAD5/wMAAQACAAMAAAD8/wcAAQACAAMAAAADAAcAAQADAAMAAAD9//3/AQADAAEAAAD9//7/AQADAAEAAAD9//z/AQADAAEAAAD8/wQAAQADAAEAAAD8/wUAAQADAAEAAAD8/wYAAQADAAEAAAABAPz/AQACAAAAAAABAP3/AQACAAAAAAABAP7/AQACAAAAAAABAP//AQACAAAAAAABAAAAAQACAAAAAAABAAEAAQACAAAAAAABAAIAAQACAAAAAAD6////AQACAAEAAAD7////AQACAAEAAAD8////AQACAAEAAAD6/wMAAQADAAAAAAD7/wMAAQADAAAAAAD9/wcAAQADAAAAAAD+/wcAAQADAAAAAAD//wcAAQADAAAAAAAAAAcAAQADAAAAAAABAAcAAQADAAAAAAACAAcAAQADAAAAAAACAAMAAQACAAEAAAACAAIAAQADAAAAAAADAAIAAQADAAAAAAA=")
 tile_set = ExtResource("3_g3r16")
 
+[node name="furniture" type="TileMapLayer" parent="." unique_id=1275802388]
+z_index = 1
+texture_filter = 5
+position = Vector2(-8, -8)
+tile_map_data = PackedByteArray("AAD+/wEAAAAAAAQAAAD+/wIAAAAAAAUAAAD//wEAAAABAAQAAAD//wIAAAABAAUAAAD9/wEAAAAFAAQAAAD9/wIAAAAFAAQAAAD+/wAAAAAFAAQAAAD//wAAAAAFAAQAAAAAAAEAAAAFAAQAAAAAAAIAAAAFAAQAAAD//wMAAAAFAAQAAAD+/wMAAAAFAAQAAAACAAMAAAADAAMAAAADAAMAAAAEAAMAAAD7////AAADAAMAAAD8////AAAEAAMAAAD8/wcAAAADAAIAAAD9/wcAAAAEAAIAAAD///3/AAADAAIAAAAAAP3/AAAEAAIAAAAAAAcAAAADAAIAAAABAAcAAAAEAAIAAAACAAcAAAADAAIAAAADAAcAAAAEAAIAAAA=")
+tile_set = ExtResource("4_vcp7c")
+
 [node name="doors" type="Node2D" parent="." unique_id=1003071487]
 position = Vector2(-8, -8)
 
 [node name="door1" type="Marker2D" parent="doors" unique_id=68452781]
-position = Vector2(-120, 24)
+position = Vector2(-112, 24)
 rotation = 3.1415927
 
 [node name="door2" type="Marker2D" parent="doors" unique_id=453389893]
-position = Vector2(56, 88)
+position = Vector2(64, 88)
 
 [node name="door3" type="Marker2D" parent="doors" unique_id=1768655435]
-position = Vector2(-8, -88)
+position = Vector2(-8, -80)
 rotation = 4.712389
+
+[node name="containers" type="Node2D" parent="." unique_id=1168429471]
+
+[node name="container1" type="Marker2D" parent="containers" unique_id=1712063891]
+position = Vector2(-32, 104)
+rotation = 1.5707964
+
+[node name="container2" type="Marker2D" parent="containers" unique_id=1312134190]
+position = Vector2(-88, 40)
+rotation = 1.5707964
