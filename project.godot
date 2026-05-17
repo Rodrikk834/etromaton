@@ -15,6 +15,10 @@ run/main_scene="uid://ctciwf5uabn6l"
 config/features=PackedStringArray("4.6", "GL Compatibility")
 config/icon="res://tiles/icon.svg"
 
+[autoload]
+
+GlobalController="*uid://danll7r4etdtb"
+
 [global_group]
 
 player=""

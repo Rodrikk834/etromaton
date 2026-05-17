@@ -7,9 +7,7 @@
 [ext_resource type="TileSet" uid="uid://tir6tddggwiu" path="res://tiles/hola.tres" id="3_ijdfw"]
 [ext_resource type="PackedScene" uid="uid://dec2mp6etjb5u" path="res://scenes/rooms/room_2.tscn" id="3_jb6a7"]
 [ext_resource type="PackedScene" uid="uid://b3asmb7bybdy7" path="res://scenes/rooms/room_1.tscn" id="3_k0ot2"]
-[ext_resource type="Script" path="res://scripts/item.gd" id="4_jb6a7"]
 [ext_resource type="PackedScene" uid="uid://bcnoyf5524qd8" path="res://scenes/rooms/habitacion_3.tscn" id="4_o0lm6"]
-[ext_resource type="Texture2D" uid="uid://uqd71e7kkbee" path="res://tiles/CirculoBlanco.png" id="5_esn7u"]
 [ext_resource type="PackedScene" uid="uid://c0racvy6eraes" path="res://scenes/rooms/sala_1.tscn" id="7_1w873"]
 [ext_resource type="PackedScene" uid="uid://faohgt32o8qp" path="res://scenes/rooms/sala_2.tscn" id="8_vd6wd"]
 [ext_resource type="PackedScene" uid="uid://cg7b25pce1o3p" path="res://scenes/rooms/sala_3.tscn" id="9_3yfn6"]
@@ -26,6 +24,7 @@
 [ext_resource type="PackedScene" uid="uid://ckpj7qp88wrrq" path="res://scenes/rooms/bano_3.tscn" id="21_up5pg"]
 [ext_resource type="PackedScene" uid="uid://wwgwliatgrkc" path="res://scenes/rooms/bano_4.tscn" id="22_j2c5s"]
 [ext_resource type="TileSet" uid="uid://b3bhr3aer3sbk" path="res://tiles/muebles.tres" id="23_q0kxy"]
+[ext_resource type="PackedScene" uid="uid://ckx4xmktbuuou" path="res://scenes/container.tscn" id="23_txgxd"]
 [ext_resource type="PackedScene" uid="uid://dlhhllktxjwcj" path="res://scenes/player.tscn" id="24_txgxd"]
 [ext_resource type="PackedScene" uid="uid://dino4tyr5fyr1" path="res://scenes/robot_character.tscn" id="29_wr82n"]
 
@@ -47,9 +46,6 @@ parsed_geometry_type = 1
 parsed_collision_mask = 1
 source_geometry_mode = 1
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_sneai"]
-radius = 43.47
-
 [node name="Node2D" type="Node2D" unique_id=97602548]
 texture_filter = 1
 
@@ -60,6 +56,7 @@ escenas_iniciales = Array[PackedScene]([ExtResource("2_8yh2u"), ExtResource("3_d
 escenas_cuartos = Array[PackedScene]([ExtResource("3_k0ot2"), ExtResource("3_jb6a7"), ExtResource("7_1w873"), ExtResource("8_vd6wd"), ExtResource("9_3yfn6"), ExtResource("10_cdyvt"), ExtResource("11_ewawa"), ExtResource("12_q80np")])
 categorias_especiales = Array[ExtResource("1_vd6wd")]([SubResource("Resource_q80np"), SubResource("Resource_txgxd")])
 escenas_relleno = Array[PackedScene]([ExtResource("19_q0kxy"), ExtResource("20_wr82n"), ExtResource("21_up5pg"), ExtResource("22_j2c5s")])
+escena_contenedor = ExtResource("23_txgxd")
 
 [node name="NavigationRegion2D" type="NavigationRegion2D" parent="rooms" unique_id=196782045]
 position = Vector2(-8, -8)
@@ -81,17 +78,3 @@ position = Vector2(110.99999, 8)
 scale = Vector2(0.9999998, 0.9999998)
 
 [node name="Player" parent="." unique_id=540015378 instance=ExtResource("24_txgxd")]
-
-[node name="Item" type="Area2D" parent="." unique_id=424996310]
-position = Vector2(110, 39)
-scale = Vector2(0.1, 0.1)
-script = ExtResource("4_jb6a7")
-
-[node name="Sprite2D" type="Sprite2D" parent="Item" unique_id=16205054]
-position = Vector2(-3.9999924, 4.9999695)
-scale = Vector2(0.1, 0.1)
-texture = ExtResource("5_esn7u")
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Item" unique_id=1742457022]
-position = Vector2(-4, 5)
-shape = SubResource("CircleShape2D_sneai")

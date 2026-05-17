@@ -1,0 +1,22 @@
+[gd_scene format=3 uid="uid://ckx4xmktbuuou"]
+
+[ext_resource type="TileSet" uid="uid://b3bhr3aer3sbk" path="res://tiles/muebles.tres" id="1_1syo6"]
+[ext_resource type="Script" uid="uid://d3w1j4wefyw1s" path="res://scripts/container.gd" id="1_cjjsl"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_1syo6"]
+size = Vector2(29.5, 20)
+
+[node name="container" type="Node2D" unique_id=502479443]
+script = ExtResource("1_cjjsl")
+
+[node name="TileMapLayer" type="TileMapLayer" parent="." unique_id=1463330162]
+position = Vector2(-8, -8)
+tile_map_data = PackedByteArray(0, 0, 0, 0, 0, 0, 0, 0, 6, 0, 1, 0, 0, 0, 1, 0, 0, 0, 0, 0, 7, 0, 1, 0, 0, 0)
+tile_set = ExtResource("1_1syo6")
+
+[node name="StaticBody2D" type="StaticBody2D" parent="." unique_id=2127486448]
+input_pickable = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D" unique_id=24858615]
+position = Vector2(4, 0)
+shape = SubResource("RectangleShape2D_1syo6")
