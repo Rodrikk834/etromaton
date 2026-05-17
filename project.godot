@@ -37,6 +37,7 @@ GlobalController="*uid://bdfq11qlccitt"
 
 player=""
 navigation=""
+Robot=""
 
 [gui]
 
