@@ -16,7 +16,7 @@
 [ext_resource type="PackedScene" uid="uid://do1tvj1sckkcv" path="res://scenes/rooms/cocina_3.tscn" id="12_q80np"]
 [ext_resource type="PackedScene" uid="uid://e2bckpqcjkth" path="res://scenes/rooms/room_3.tscn" id="13_wr82n"]
 [ext_resource type="PackedScene" uid="uid://okxtgce5bt82" path="res://scenes/rooms/lab_1.tscn" id="14_cdyvt"]
-[ext_resource type="PackedScene" path="res://scenes/rooms/room_4.tscn" id="14_up5pg"]
+[ext_resource type="PackedScene" uid="uid://rcsxbj18d454" path="res://scenes/rooms/room_4.tscn" id="14_up5pg"]
 [ext_resource type="PackedScene" uid="uid://dt68w1irlj883" path="res://scenes/rooms/lab_2.tscn" id="15_ewawa"]
 [ext_resource type="PackedScene" uid="uid://bgtxjuv4d3tx2" path="res://scenes/rooms/estudio_1.tscn" id="16_u77jt"]
 [ext_resource type="PackedScene" uid="uid://dq2ugsk3fh8p6" path="res://scenes/rooms/estudio_2.tscn" id="17_rt8ct"]
@@ -29,6 +29,7 @@
 [ext_resource type="PackedScene" uid="uid://ckx4xmktbuuou" path="res://scenes/container.tscn" id="23_txgxd"]
 [ext_resource type="PackedScene" uid="uid://dlhhllktxjwcj" path="res://scenes/player.tscn" id="24_txgxd"]
 [ext_resource type="PackedScene" uid="uid://dino4tyr5fyr1" path="res://scenes/robot_character.tscn" id="29_wr82n"]
+[ext_resource type="Texture2D" uid="uid://uqd71e7kkbee" path="res://tiles/CirculoBlanco.png" id="30_up5pg"]
 
 [sub_resource type="Resource" id="Resource_d11h3"]
 script = ExtResource("1_vd6wd")
@@ -46,6 +47,20 @@ metadata/_custom_type_script = "uid://x5ol3g0ltt0c"
 parsed_geometry_type = 1
 parsed_collision_mask = 1
 source_geometry_mode = 1
+
+[sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_wr82n"]
+cull_mode = 2
+polygon = PackedVector2Array(0, 0, 0.1, 0.1, 0, 0.1)
+
+[sub_resource type="Gradient" id="Gradient_wr82n"]
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_up5pg"]
+gradient = SubResource("Gradient_wr82n")
+fill_from = Vector2(1, 0)
+fill_to = Vector2(0, 0)
+
+[sub_resource type="CanvasTexture" id="CanvasTexture_j2c5s"]
+specular_texture = ExtResource("30_up5pg")
 
 [node name="Node2D" type="Node2D" unique_id=97602548]
 texture_filter = 1
@@ -79,3 +94,33 @@ position = Vector2(110.99999, 8)
 scale = Vector2(0.9999998, 0.9999998)
 
 [node name="Player" parent="." unique_id=540015378 instance=ExtResource("24_txgxd")]
+
+[node name="LightOccluder2D" type="LightOccluder2D" parent="Player" unique_id=1827537759]
+position = Vector2(-159.99997, 3.8146966e-06)
+scale = Vector2(30461.418, 9999.996)
+occluder = SubResource("OccluderPolygon2D_wr82n")
+occluder_light_mask = 3
+
+[node name="LightOccluder2D2" type="LightOccluder2D" parent="Player" unique_id=1812870487]
+position = Vector2(-159.99997, 5.684341e-13)
+scale = Vector2(30461.418, 9999.996)
+occluder = SubResource("OccluderPolygon2D_wr82n")
+occluder_light_mask = 3
+
+[node name="PointLight2D" type="PointLight2D" parent="Player" unique_id=425269160]
+position = Vector2(865.2345, 3.8146973e-06)
+scale = Vector2(3046.1423, 999.99994)
+range_item_cull_mask = 3
+shadow_enabled = true
+shadow_color = Color(0, 0, 0, 1)
+texture = SubResource("GradientTexture2D_up5pg")
+texture_scale = 0.01
+
+[node name="Sprite2D2" type="Sprite2D" parent="Player" unique_id=138312083]
+modulate = Color(0, 0, 0, 1)
+z_index = -1
+scale = Vector2(5000, 5000)
+texture = SubResource("CanvasTexture_j2c5s")
+
+[node name="DirectionalLight2D" type="DirectionalLight2D" parent="." unique_id=1623046967]
+blend_mode = 1
