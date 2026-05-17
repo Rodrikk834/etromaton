@@ -3,6 +3,7 @@
 [ext_resource type="Script" uid="uid://yn6eexbahhdf" path="res://scripts/player.gd" id="1_qhqgy"]
 [ext_resource type="PackedScene" uid="uid://c35p5r3qk0lto" path="res://scenes/taser_ray.tscn" id="2_dqkch"]
 [ext_resource type="Texture2D" uid="uid://git5aex56bg7" path="res://tiles/Player.png" id="3_qhqgy"]
+[ext_resource type="AudioStream" uid="uid://btopekme8wv1" path="res://audios/footstepsP.mp3" id="4_dqkch"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_qhqgy"]
 radius = 30.0
@@ -28,6 +29,7 @@ scale = Vector2(5, 5)
 texture = ExtResource("3_qhqgy")
 
 [node name="PickUpArea" type="Area2D" parent="." unique_id=1527539823]
+visible = false
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="PickUpArea" unique_id=1921320209]
 position = Vector2(-9.999999, 0)
@@ -39,6 +41,9 @@ position = Vector2(20, 40)
 [node name="Camera2D" type="Camera2D" parent="." unique_id=1698437678]
 zoom = Vector2(3, 3)
 position_smoothing_enabled = true
+
+[node name="FootstepsP" type="AudioStreamPlayer2D" parent="." unique_id=1040354987]
+stream = ExtResource("4_dqkch")
 
 [connection signal="area_entered" from="PickUpArea" to="." method="_on_pick_up_area_area_entered"]
 [connection signal="area_exited" from="PickUpArea" to="." method="_on_pick_up_area_area_exited"]

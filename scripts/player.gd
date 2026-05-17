@@ -3,6 +3,7 @@ extends CharacterBody2D
 @export var move_speed: float = 100
 @export var bullet_scene: PackedScene
 @export var lives := 3
+@onready var footsteps = $FootstepsP
 
 var spawn_position: Vector2
 
@@ -28,6 +29,11 @@ func _physics_process(_delta):
 	
 	velocity = direction * move_speed
 	move_and_slide()
+	if velocity.length() > 0:
+		if !footsteps.playing:
+			footsteps.play()
+	else:
+		footsteps.stop()
 	
 	look_at(get_global_mouse_position())
 	
