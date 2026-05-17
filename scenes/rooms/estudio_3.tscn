@@ -162,6 +162,7 @@ script = ExtResource("1_kx2hd")
 muro_arriba = Vector2i(6, 1)
 muro_abajo = Vector2i(7, 0)
 muro_izquierda = Vector2i(7, 1)
+muro_derecha = Vector2i(6, 0)
 
 [node name="floors" type="TileMapLayer" parent="." unique_id=1344323048]
 texture_filter = 1
