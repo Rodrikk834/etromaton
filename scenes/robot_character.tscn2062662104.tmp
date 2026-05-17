@@ -1,0 +1,50 @@
+[gd_scene format=3 uid="uid://dino4tyr5fyr1"]
+
+[ext_resource type="Texture2D" uid="uid://d3k6gj0254vxo" path="res://tiles/icon.svg" id="1_em8rj"]
+[ext_resource type="Script" uid="uid://bd3fx0xex72gn" path="res://scripts/StateMachine.gd" id="2_eqd43"]
+[ext_resource type="Script" uid="uid://nuuv03ac6epc" path="res://scripts/RobotFollow.gd" id="3_em8rj"]
+[ext_resource type="Script" uid="uid://cftb5py8nen2q" path="res://scripts/RobotIdle.gd" id="3_eqd43"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_il4nl"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_em8rj"]
+
+[node name="RobotCharacter" type="CharacterBody2D" unique_id=150247689]
+
+[node name="RobotSprite" type="Sprite2D" parent="." unique_id=72328348]
+scale = Vector2(0.1, 0.1)
+texture = ExtResource("1_em8rj")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=879775622]
+shape = SubResource("CircleShape2D_il4nl")
+
+[node name="StateMachine" type="Node" parent="." unique_id=358133987 node_paths=PackedStringArray("initialState")]
+script = ExtResource("2_eqd43")
+initialState = NodePath("RobotIdle")
+
+[node name="RobotFollow" type="Node" parent="StateMachine" unique_id=1752883160 node_paths=PackedStringArray("enemy", "NavigationAgent")]
+script = ExtResource("3_em8rj")
+enemy = NodePath("../..")
+NavigationAgent = NodePath("../../NavigationAgent2D")
+metadata/_custom_type_script = "uid://nuuv03ac6epc"
+
+[node name="RobotIdle" type="Node" parent="StateMachine" unique_id=1047294123 node_paths=PackedStringArray("enemy", "NavigationAgent")]
+script = ExtResource("3_eqd43")
+enemy = NodePath("../..")
+NavigationAgent = NodePath("../../NavigationAgent2D")
+metadata/_custom_type_script = "uid://cftb5py8nen2q"
+
+[node name="RobotStun" type="Node" parent="StateMachine" unique_id=1455053402 node_paths=PackedStringArray("enemy", "NavigationAgent")]
+script = ExtResource("3_eqd43")
+enemy = NodePath("../..")
+NavigationAgent = NodePath("../../NavigationAgent2D")
+metadata/_custom_type_script = "uid://cftb5py8nen2q"
+
+[node name="NavigationAgent2D" type="NavigationAgent2D" parent="." unique_id=694896286]
+path_postprocessing = 1
+debug_enabled = true
+
+[node name="Hitbox" type="Area2D" parent="." unique_id=674668454]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Hitbox" unique_id=1483963307]
+shape = SubResource("CircleShape2D_em8rj")
