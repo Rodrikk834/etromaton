@@ -1,0 +1,22 @@
+[gd_scene format=3 uid="uid://c35p5r3qk0lto"]
+
+[ext_resource type="Script" uid="uid://btxg85c51pqpv" path="res://scripts/taser_ray.gd" id="1_4m7up"]
+[ext_resource type="Texture2D" uid="uid://ba388x5gxamce" path="res://tiles/TaserDisparo.png" id="1_d0rdt"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_4m7up"]
+radius = 19.0
+height = 96.0
+
+[node name="TaserRay" type="Area2D" unique_id=1344959060]
+script = ExtResource("1_4m7up")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=954910912]
+position = Vector2(10, 0)
+rotation = 1.5707964
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("1_d0rdt")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1611651693]
+position = Vector2(63, 0)
+rotation = 1.5707964
+shape = SubResource("CapsuleShape2D_4m7up")
