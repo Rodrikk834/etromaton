@@ -1,10 +1,10 @@
-[gd_scene format=3 uid="uid://15ami8ai0cvu"]
+[gd_scene format=3 uid="uid://lbrtp0ttlbkp"]
 
 [ext_resource type="Texture2D" uid="uid://ckre7t5y3m5vr" path="res://sprites/backgroundinventory.png" id="1_hj2ta"]
-[ext_resource type="Script" uid="uid://ci2a4g2nyhmk2" path="res://scripts/inventoryAutoLoad.gd" id="1_uae8j"]
+[ext_resource type="Script" path="res://scripts/inventoryAutoLoad.gd" id="1_uae8j"]
 [ext_resource type="Script" uid="uid://qbqu36hqw8wy" path="res://scripts/itemsBehavior.gd" id="2_53g1v"]
-[ext_resource type="Script" uid="uid://cdxjluw5372we" path="res://scripts/itemDescription.gd" id="2_s887n"]
-[ext_resource type="Script" uid="uid://bqv8ua05mqsba" path="res://scripts/ItemCreator.gd" id="4_yyk2a"]
+[ext_resource type="Script" path="res://scripts/itemDescription.gd" id="2_s887n"]
+[ext_resource type="Script" path="res://scripts/ItemCreator.gd" id="4_yyk2a"]
 [ext_resource type="Texture2D" uid="uid://bgfq5u6eprrfm" path="res://sprites/Itemsinis.png" id="8_g71ie"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_uae8j"]

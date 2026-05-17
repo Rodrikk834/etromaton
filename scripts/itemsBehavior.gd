@@ -74,13 +74,4 @@ func is_on_inventory(item_type: int) -> bool:
 
 func _ready() -> void:
 	create_sprite(0)
-	create_sprite(2)
-	create_sprite(3)
-	create_sprite(4)
-	create_sprite(5)
-	create_sprite(6)
-	create_sprite(7)
-	create_sprite(8)
-	create_sprite(9)
-	create_sprite(10)
 	quit_inventory_spawmer()
