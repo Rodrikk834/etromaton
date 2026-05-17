@@ -1,16 +1,9 @@
 extends Node2D
 class_name CuartoPrefab
 
-# =========================================================
-# CONFIGURACIÓN DEL CUARTO
-# =========================================================
 @export var tipo_cuarto : String = "normal"
-# Cambia este valor si tus tiles miden algo distinto a 16x16
 const TILE_SIZE : float = 16.0 
 
-# =========================================================
-# FUNCIÓN PRINCIPAL (Llamada por el Generador)
-# =========================================================
 func exportar_datos_matematicos(id_asignado : int) -> Dictionary:
 	var dict_cuarto = {
 		"id": id_asignado,
