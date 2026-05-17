@@ -24,12 +24,14 @@ initialState = NodePath("RobotIdle")
 
 [node name="RobotFollow" type="Node" parent="StateMachine" unique_id=1752883160 node_paths=PackedStringArray("enemy", "NavigationAgent")]
 script = ExtResource("3_em8rj")
+moveSpeed = 50.0
 enemy = NodePath("../..")
 NavigationAgent = NodePath("../../NavigationAgent2D")
 metadata/_custom_type_script = "uid://nuuv03ac6epc"
 
 [node name="RobotIdle" type="Node" parent="StateMachine" unique_id=1047294123 node_paths=PackedStringArray("enemy", "NavigationAgent")]
 script = ExtResource("3_eqd43")
+moveSpeed = 25.0
 enemy = NodePath("../..")
 NavigationAgent = NodePath("../../NavigationAgent2D")
 metadata/_custom_type_script = "uid://cftb5py8nen2q"
@@ -41,7 +43,6 @@ NavigationAgent = NodePath("../../NavigationAgent2D")
 metadata/_custom_type_script = "uid://cftb5py8nen2q"
 
 [node name="NavigationAgent2D" type="NavigationAgent2D" parent="." unique_id=694896286]
-debug_enabled = true
 
 [node name="Hitbox" type="Area2D" parent="." unique_id=674668454]
 
