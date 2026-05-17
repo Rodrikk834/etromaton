@@ -2,9 +2,26 @@ extends CharacterBody2D
 
 @export var move_speed: float = 100
 @export var bullet_scene: PackedScene
+@export var lives := 3
+
+var spawn_position: Vector2
+
 
 var nearby_item = null
 var can_shoot = false
+
+func _ready():
+	spawn_position = global_position
+
+func take_damage(amount := 1):
+	lives -= amount
+	print("Vidas: ", lives)
+
+	global_position = spawn_position
+	velocity = Vector2.ZERO
+
+	if lives <= 0:
+		print("Game Over")
 
 func _physics_process(_delta):
 	var direction := Input.get_vector("move_left", "move_right","move_up","move_down")

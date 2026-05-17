@@ -28,7 +28,6 @@ scale = Vector2(5, 5)
 texture = ExtResource("3_qhqgy")
 
 [node name="PickUpArea" type="Area2D" parent="." unique_id=1527539823]
-visible = false
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="PickUpArea" unique_id=1921320209]
 position = Vector2(-9.999999, 0)

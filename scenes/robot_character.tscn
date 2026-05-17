@@ -7,6 +7,7 @@
 [ext_resource type="Script" uid="uid://cftb5py8nen2q" path="res://scripts/RobotIdle.gd" id="3_eqd43"]
 [ext_resource type="Texture2D" uid="uid://bpougfam2kaai" path="res://tiles/RobotE.png" id="3_xdh1l"]
 [ext_resource type="Script" uid="uid://cxaela14s0ndg" path="res://scripts/RobotStunned.gd" id="5_svwkp"]
+[ext_resource type="Script" uid="uid://cxcdirr30dg08" path="res://scripts/hitboxRobot.gd" id="8_xdh1l"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_kr8bd"]
 animations = [{
@@ -46,8 +47,8 @@ radius = 3.0
 height = 14.0
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_xabvw"]
-radius = 3.0
-height = 14.0
+radius = 4.0
+height = 16.0
 
 [node name="RobotCharacter" type="CharacterBody2D" unique_id=150247689 groups=["Robot"]]
 
@@ -92,7 +93,7 @@ animated_sprite = NodePath("../../RobotSprites")
 debug_enabled = true
 
 [node name="Hitbox" type="Area2D" parent="." unique_id=674668454]
-visible = false
+script = ExtResource("8_xdh1l")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Hitbox" unique_id=1483963307]
 position = Vector2(-1, 0)
