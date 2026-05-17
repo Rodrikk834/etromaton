@@ -6,6 +6,7 @@ extends CharacterBody2D
 var nearby_item = null
 var can_shoot = false
 
+
 func _physics_process(_delta):
 	var direction := Input.get_vector("move_left", "move_right","move_up","move_down")
 	
@@ -44,3 +45,4 @@ func _on_pick_up_area_area_entered(area: Area2D) -> void:
 func _on_pick_up_area_area_exited(area: Area2D) -> void:
 	if area == nearby_item:
 		nearby_item = null
+		
