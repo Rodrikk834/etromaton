@@ -1,8 +1,8 @@
-[gd_scene format=4 uid="uid://c32ltamb41twr"]
+[gd_scene format=4 uid="uid://e2bckpqcjkth"]
 
-[ext_resource type="Script" path="res://scripts/readRoom.gd" id="1_josgj"]
-[ext_resource type="TileSet" uid="uid://cxmscnrbinfcj" path="res://tiles/hola.tres" id="2_g5ssp"]
-[ext_resource type="TileSet" uid="uid://c45qxqrc7o51y" path="res://tiles/muebles.tres" id="3_g5ssp"]
+[ext_resource type="Script" uid="uid://bj2duf5m1vbh0" path="res://scripts/readRoom.gd" id="1_josgj"]
+[ext_resource type="TileSet" uid="uid://tir6tddggwiu" path="res://tiles/hola.tres" id="2_g5ssp"]
+[ext_resource type="TileSet" uid="uid://b3bhr3aer3sbk" path="res://tiles/muebles.tres" id="3_g5ssp"]
 
 [node name="Room1" type="Node2D" unique_id=25791557]
 script = ExtResource("1_josgj")

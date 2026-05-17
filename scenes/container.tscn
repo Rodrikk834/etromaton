@@ -2,22 +2,23 @@
 
 [ext_resource type="TileSet" uid="uid://b3bhr3aer3sbk" path="res://tiles/muebles.tres" id="1_1syo6"]
 [ext_resource type="Script" uid="uid://d3w1j4wefyw1s" path="res://scripts/container.gd" id="1_cjjsl"]
+[ext_resource type="Script" uid="uid://ybkrlsjx2bkj" path="res://scripts/items.gd" id="2_184ql"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_1syo6"]
-size = Vector2(29.5, 20)
+size = Vector2(18.75, 42)
 
-[node name="container" type="Node2D" unique_id=502479443 node_paths=PackedStringArray("items_dentro")]
+[node name="container" type="Node2D" unique_id=502479443]
 script = ExtResource("1_cjjsl")
-items_dentro = [NodePath("")]
+items_dentro = Array[ExtResource("2_184ql")]([null])
 
 [node name="TileMapLayer" type="TileMapLayer" parent="." unique_id=1463330162]
-position = Vector2(-8, -8)
-tile_map_data = PackedByteArray(0, 0, 0, 0, 0, 0, 0, 0, 6, 0, 1, 0, 0, 0, 1, 0, 0, 0, 0, 0, 7, 0, 1, 0, 0, 0)
+tile_map_data = PackedByteArray(0, 0, 0, 0, 0, 0, 0, 0, 6, 0, 13, 0, 0, 0, 0, 0, 255, 255, 0, 0, 6, 0, 12, 0, 0, 0)
 tile_set = ExtResource("1_1syo6")
 
 [node name="StaticBody2D" type="StaticBody2D" parent="." unique_id=2127486448]
+position = Vector2(8, 8)
 input_pickable = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D" unique_id=24858615]
-position = Vector2(4, 0)
+position = Vector2(0, -8)
 shape = SubResource("RectangleShape2D_1syo6")

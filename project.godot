@@ -17,7 +17,7 @@ config/icon="res://tiles/icon.svg"
 
 [autoload]
 
-GlobalController="*uid://danll7r4etdtb"
+GlobalController="*uid://bdfq11qlccitt"
 
 [global_group]
 

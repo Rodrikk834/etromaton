@@ -12,8 +12,8 @@ func _ready():
 
 func _generar_contenido():
 	for x in rng.randi_range(0, 4):
-		var tipo_item = rng.randi_range(0, GlobalController.items_normales_array.size() - 1)
-		var item_temp = GlobalController.items_normales_array[tipo_item]
+		var tipo_item = 0 #rng.randi_range(0, GlobalController.items_array.size())
+		var item_temp = GlobalController.items_array[tipo_item]
 		items_dentro.append(item_temp)
 	
 

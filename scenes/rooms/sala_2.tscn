@@ -1,8 +1,8 @@
 [gd_scene format=4 uid="uid://dpk0recxmr47i"]
 
 [ext_resource type="Texture2D" uid="uid://bdi0k2vwuo0gu" path="res://tiles/Tileset - Jueguito.png" id="1_pnmvt"]
-[ext_resource type="Script" path="res://scripts/readRoom.gd" id="1_uxh4i"]
-[ext_resource type="TileSet" uid="uid://c45qxqrc7o51y" path="res://tiles/muebles.tres" id="3_5me28"]
+[ext_resource type="Script" uid="uid://bj2duf5m1vbh0" path="res://scripts/readRoom.gd" id="1_uxh4i"]
+[ext_resource type="TileSet" uid="uid://b3bhr3aer3sbk" path="res://tiles/muebles.tres" id="3_5me28"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_pnmvt"]
 texture = ExtResource("1_pnmvt")
@@ -201,11 +201,11 @@ position = Vector2(40, -112)
 [node name="containers" type="Node2D" parent="." unique_id=1607877414]
 
 [node name="container1" type="Marker2D" parent="containers" unique_id=1640193426]
-position = Vector2(-80, -56)
+position = Vector2(-80, -48)
 
 [node name="container2" type="Marker2D" parent="containers" unique_id=2617997]
-position = Vector2(-56, -104)
-rotation = 4.712389
+position = Vector2(-48, -112)
+rotation = 1.5707964
 
 [node name="container3" type="Marker2D" parent="containers" unique_id=1354104177]
 position = Vector2(-16, 40)
