@@ -1,30 +1,118 @@
 [gd_scene format=3 uid="uid://do7icrkr8xgmw"]
 
-[ext_resource type="Script" uid="uid://cegf06yi7r4lb" path="res://scenes/panel_behavior.gd" id="1_ugrko"]
-[ext_resource type="Script" uid="uid://cwd7wp7jb3ly6" path="res://scenes/panel_step_1.gd" id="2_w42cn"]
+[ext_resource type="Script" uid="uid://cegf06yi7r4lb" path="res://scripts/panel_behavior.gd" id="1_ugrko"]
+[ext_resource type="Script" uid="uid://cwd7wp7jb3ly6" path="res://scripts/panel_step_1.gd" id="2_w42cn"]
 [ext_resource type="Texture2D" uid="uid://l1ypw4aypeo6" path="res://sprites/PanelSprites/Tornillo.png" id="3_30i7g"]
 [ext_resource type="Texture2D" uid="uid://daphfbv0qr36p" path="res://sprites/PanelSprites/Layer2.png" id="4_xcs0r"]
+[ext_resource type="Texture2D" uid="uid://5nw74oa2hg8q" path="res://sprites/PanelSprites/Layer4.png" id="5_kn57l"]
+[ext_resource type="Script" uid="uid://cc2tphnackuno" path="res://scripts/panel_step_2.gd" id="6_qmjam"]
+[ext_resource type="Texture2D" uid="uid://dye0ue7eniopn" path="res://sprites/PanelSprites/Layer5.png" id="6_u7eh4"]
+[ext_resource type="Texture2D" uid="uid://dian3kmmq86w2" path="res://sprites/PanelSprites/CableAmarillo.png" id="6_ud1qi"]
+[ext_resource type="Texture2D" uid="uid://ck13edyexexpm" path="res://sprites/PanelSprites/CableAzul.png" id="7_qmjam"]
+[ext_resource type="Texture2D" uid="uid://donspoovfiax1" path="res://sprites/PanelSprites/CableRojo.png" id="8_cqp7w"]
+[ext_resource type="Texture2D" uid="uid://c54c2cmnmuumt" path="res://sprites/PanelSprites/CableVerde.png" id="9_rahga"]
+[ext_resource type="Script" uid="uid://db7nuy5mhcxl2" path="res://scripts/panel_area_2d.gd" id="12_cqp7w"]
+[ext_resource type="Script" uid="uid://crvso223n6auf" path="res://scripts/panel_step_3.gd" id="12_rahga"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_kn57l"]
 atlas = ExtResource("3_30i7g")
 region = Rect2(27, 30, 108, 100)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_30i7g"]
-atlas = ExtResource("4_xcs0r")
-
 [node name="Panel" type="Node2D" unique_id=220700073 node_paths=PackedStringArray("nodes_steps")]
 script = ExtResource("1_ugrko")
-nodes_steps = [null]
+nodes_steps = [NodePath("CanvasLayer/Step1"), NodePath("CanvasLayer/Step2"), NodePath("CanvasLayer/Step3")]
 
 [node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=1757597040]
 
-[node name="Step1" type="Node2D" parent="CanvasLayer" unique_id=1422003331]
+[node name="Step1" type="Node2D" parent="CanvasLayer" unique_id=1422003331 node_paths=PackedStringArray("back", "game_manager")]
 script = ExtResource("2_w42cn")
 torn = SubResource("AtlasTexture_kn57l")
-tapa = SubResource("AtlasTexture_30i7g")
+back = NodePath("Background")
+game_manager = NodePath("../..")
 
-[node name="Step2" type="Node2D" parent="CanvasLayer" unique_id=1741765953]
+[node name="Background" type="TextureRect" parent="CanvasLayer/Step1" unique_id=1939038129]
+offset_left = 205.0
+offset_top = 78.0
+offset_right = 953.0
+offset_bottom = 579.0
+texture = ExtResource("4_xcs0r")
+expand_mode = 1
 
-[node name="Step3" type="Node2D" parent="CanvasLayer" unique_id=435591460]
+[node name="Step2" type="Node2D" parent="CanvasLayer" unique_id=1741765953 node_paths=PackedStringArray("cables", "cables_collisions", "back", "game_manager")]
+script = ExtResource("6_qmjam")
+cables = [NodePath("CableAmarillo"), NodePath("CableAzul"), NodePath("CableRojo"), NodePath("CableVerde")]
+cables_collisions = [NodePath("Area2D/CollisionAmarillo"), NodePath("Area2D/CollisionAzul"), NodePath("Area2D/CollisionRojo"), NodePath("Area2D/CollisionVerde")]
+back = NodePath("Background")
+game_manager = NodePath("../..")
 
-[node name="Step4" type="Node2D" parent="CanvasLayer" unique_id=1379720560]
+[node name="Background" type="TextureRect" parent="CanvasLayer/Step2" unique_id=940843452]
+offset_left = 205.0
+offset_top = 78.0
+offset_right = 953.0
+offset_bottom = 579.0
+texture = ExtResource("5_kn57l")
+expand_mode = 1
+
+[node name="CableAmarillo" type="TextureRect" parent="CanvasLayer/Step2" unique_id=879472388]
+offset_left = 206.0
+offset_top = 63.0
+offset_right = 951.0
+offset_bottom = 586.0
+texture = ExtResource("6_ud1qi")
+
+[node name="CableAzul" type="TextureRect" parent="CanvasLayer/Step2" unique_id=776852467]
+offset_left = 216.0
+offset_top = 95.0
+offset_right = 923.0
+offset_bottom = 564.0
+texture = ExtResource("7_qmjam")
+
+[node name="CableRojo" type="TextureRect" parent="CanvasLayer/Step2" unique_id=523355459]
+offset_left = 209.0
+offset_top = 82.0
+offset_right = 948.0
+offset_bottom = 568.0
+texture = ExtResource("8_cqp7w")
+
+[node name="CableVerde" type="TextureRect" parent="CanvasLayer/Step2" unique_id=2024615709]
+offset_left = 206.00002
+offset_top = 77.0
+offset_right = 846.0
+offset_bottom = 497.0
+scale = Vector2(1.1599988, 1.2)
+texture = ExtResource("9_rahga")
+
+[node name="Area2D" type="Area2D" parent="CanvasLayer/Step2" unique_id=460186238 node_paths=PackedStringArray("step")]
+script = ExtResource("12_cqp7w")
+step = NodePath("..")
+
+[node name="CollisionAmarillo" type="CollisionPolygon2D" parent="CanvasLayer/Step2/Area2D" unique_id=627379521]
+polygon = PackedVector2Array(369, 197, 393, 197, 393, 220, 508, 220, 508, 197, 556, 197, 556, 221, 509, 221, 509, 245, 392, 245, 392, 221, 368, 221, 368, 197)
+
+[node name="CollisionAzul" type="CollisionPolygon2D" parent="CanvasLayer/Step2/Area2D" unique_id=591267363]
+polygon = PackedVector2Array(369, 269, 392, 269, 392, 292, 438, 292, 438, 269, 508, 269, 508, 245, 555, 245, 555, 269, 509, 269, 509, 293, 439, 293, 439, 316, 392, 316, 392, 293, 369, 293)
+
+[node name="CollisionRojo" type="CollisionPolygon2D" parent="CanvasLayer/Step2/Area2D" unique_id=739778478]
+polygon = PackedVector2Array(369, 340, 392, 340, 392, 363, 415, 363, 415, 340, 459, 340, 459, 318, 503, 318, 503, 293, 555, 293, 555, 316, 555, 318, 533, 318, 533, 341, 481, 341, 481, 363, 439, 363, 439, 388, 392, 388, 392, 365, 368, 365, 368, 341)
+
+[node name="CollisionVerde" type="CollisionPolygon2D" parent="CanvasLayer/Step2/Area2D" unique_id=1669904589]
+polygon = PackedVector2Array(369, 412, 461, 412, 461, 387, 485, 387, 485, 362, 555, 362, 555, 388, 485, 388, 485, 412, 462, 412, 462, 437, 369, 437)
+
+[node name="Step3" type="Node2D" parent="CanvasLayer" unique_id=435591460 node_paths=PackedStringArray("button_finish", "game_manager")]
+script = ExtResource("12_rahga")
+button_finish = NodePath("Button")
+game_manager = NodePath("../..")
+
+[node name="Background" type="TextureRect" parent="CanvasLayer/Step3" unique_id=925632857]
+offset_left = 205.0
+offset_top = 78.0
+offset_right = 953.0
+offset_bottom = 579.0
+texture = ExtResource("6_u7eh4")
+expand_mode = 1
+
+[node name="Button" type="Button" parent="CanvasLayer/Step3" unique_id=679950852]
+offset_left = 673.0
+offset_top = 294.0
+offset_right = 742.0
+offset_bottom = 365.0
