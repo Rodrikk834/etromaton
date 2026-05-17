@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://ctciwf5uabn6l"]
 
-[ext_resource type="Script" uid="uid://dwvveni5viii0" path="res://scripts/worldGenController.gd" id="1_6r1qt"]
+[ext_resource type="Script" uid="uid://c6xgilu2y2igh" path="res://scripts/worldGenController.gd" id="1_6r1qt"]
 [ext_resource type="Script" uid="uid://yn6eexbahhdf" path="res://scripts/player.gd" id="2_ijdfw"]
 [ext_resource type="Texture2D" uid="uid://d3k6gj0254vxo" path="res://tiles/icon.svg" id="2_k0ot2"]
 [ext_resource type="PackedScene" uid="uid://c35p5r3qk0lto" path="res://scenes/taser_ray.tscn" id="3_esn7u"]
