@@ -2,11 +2,11 @@ extends Node
 class_name WorldGenerator
 
 @export_category("Configuración de Generación")
-@export var semilla_inicial : int = 0
+@export var semilla_inicial : int = GlobalController.world_seed
 @export var limite_cuartos : int = 100
 
 @export_category("Configuración de Pasillos (A*)")
-@export var max_length_corridor : int = 5
+@export var max_length_corridor : int = 10
 
 @export_category("Catálogo de Escenas")
 @export var escenas_iniciales : Array[PackedScene] = []
