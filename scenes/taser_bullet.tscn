@@ -1,0 +1,38 @@
+[gd_scene format=3 uid="uid://ciowkocwa1ofm"]
+
+[ext_resource type="Texture2D" uid="uid://ba388x5gxamce" path="res://tiles/TaserDisparo.png" id="1_ddu4d"]
+
+[sub_resource type="GDScript" id="GDScript_ddu4d"]
+script/source = "extends CharacterBody2D
+var pos: Vector2
+var rota: float
+var dir: float
+var speed = 2000
+
+func _ready():
+	global_position=pos
+	global_rotation=rota
+	
+
+func _physics_process(delta):
+	velocity=Vector2(speed,0).rotated(dir)
+	move_and_slide()
+"
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_pebhp"]
+radius = 19.0
+height = 96.0
+
+[node name="TaserBullet" type="CharacterBody2D" unique_id=1787425239]
+script = SubResource("GDScript_ddu4d")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=55552593]
+position = Vector2(10, 0)
+rotation = 1.5707964
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("1_ddu4d")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1726140261]
+position = Vector2(63, 0)
+rotation = 1.5707964
+shape = SubResource("CapsuleShape2D_pebhp")

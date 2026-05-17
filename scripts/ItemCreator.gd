@@ -7,42 +7,43 @@ func create_item_by_id(id: int) -> Item:
 	var items_data = {
 		0: {
 			"name": "Flashlight",
-			"desc": "pos nomas"
+			"desc": "Just a flashlight, what you need to barely see those who see you clearly."
 		},
-		
 		1: {
 			"name": "Screwdriver",
-			"desc": "pos nomas"
+			"desc": "Worn out, but still useful for loose panels."
 		},
-		
 		2: {
 			"name": "Tweezers",
-			"desc": "pos nomas"
+			"desc": "Useful to cut thick things, but not that thick"
 		},
-		
 		3: {
 			"name": "Keys",
-			"desc": "pos nomas"
+			"desc": "Could there be something locked up in there?"
 		},
-		
 		4: {
 			"name": "Taser",
-			"desc": "pos nomas"
+			"desc": "It takes a long time to recharge, but it's useful."
 		},
-		
 		5: {
-			"name": "Instructions1",
-			"desc": "pos nomas"
+			"name": "Instructions",
+			"desc": "A dónde mirar? Al panel en la espalda del robot"
 		},
-		
 		6: {
-			"name": "Instructions2",
-			"desc": "pos nomas"
+			"name": "Instructions II",
+			"desc": "Orden de cable a cortar: amarillo, verde"
 		},
-		
 		7: {
 			"name": "Notes",
-			"desc": "pos nomas"
+			"desc": "Nota 1 ns ahora la escribo"
+		},
+		8: {
+			"name": "Notes",
+			"desc": "Nota 2 ns ahora la escribo"
+		},
+		9: {
+			"name": "Notes",
+			"desc": "Nota 3 ns ahora la escribo"
 		}
 	}
 

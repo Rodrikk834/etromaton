@@ -1,9 +1,10 @@
 [gd_scene format=3 uid="uid://ckx4xmktbuuou"]
 
 [ext_resource type="Texture2D" uid="uid://ckre7t5y3m5vr" path="res://sprites/backgroundinventory.png" id="1_81k0e"]
-[ext_resource type="Script" uid="uid://cwpe1wpgukn7l" path="res://containerBehavior.gd" id="2_81k0e"]
+[ext_resource type="Script" uid="uid://k8rbca2yoost" path="res://scenes/containerAuto.gd" id="1_owqcf"]
+[ext_resource type="Script" uid="uid://cwpe1wpgukn7l" path="res://scripts/containerBehavior.gd" id="2_81k0e"]
 [ext_resource type="Texture2D" uid="uid://bgfq5u6eprrfm" path="res://sprites/Itemsinis.png" id="3_fcib7"]
-[ext_resource type="Script" uid="uid://cw6g33be2urx3" path="res://itemOptions.gd" id="4_81k0e"]
+[ext_resource type="Script" uid="uid://cw6g33be2urx3" path="res://scripts/itemOptions.gd" id="4_81k0e"]
 [ext_resource type="Script" uid="uid://bqv8ua05mqsba" path="res://scripts/ItemCreator.gd" id="5_cnvth"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_81k0e"]
@@ -43,6 +44,7 @@ atlas = ExtResource("3_fcib7")
 region = Rect2(32, 0, 16, 16)
 
 [node name="Container" type="Node2D" unique_id=754414297]
+script = ExtResource("1_owqcf")
 
 [node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=788308916]
 

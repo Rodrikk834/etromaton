@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://15ami8ai0cvu"]
 
 [ext_resource type="Texture2D" uid="uid://ckre7t5y3m5vr" path="res://sprites/backgroundinventory.png" id="1_hj2ta"]
-[ext_resource type="Script" uid="uid://ci2a4g2nyhmk2" path="res://scenes/inventoryAutoLoad.gd" id="1_uae8j"]
+[ext_resource type="Script" uid="uid://ci2a4g2nyhmk2" path="res://scripts/inventoryAutoLoad.gd" id="1_uae8j"]
 [ext_resource type="Script" uid="uid://qbqu36hqw8wy" path="res://scripts/itemsBehavior.gd" id="2_53g1v"]
 [ext_resource type="Script" uid="uid://cdxjluw5372we" path="res://scripts/itemDescription.gd" id="2_s887n"]
 [ext_resource type="Script" uid="uid://bqv8ua05mqsba" path="res://scripts/ItemCreator.gd" id="4_yyk2a"]
@@ -62,12 +62,13 @@ boxSprite = SubResource("AtlasTexture_uae8j")
 item_creator = NodePath("../../ItemCreator")
 item_description = NodePath("../ItemDescription")
 
-[node name="ItemDescription" type="Node2D" parent="CanvasLayer" unique_id=1500929256 node_paths=PackedStringArray("label_description", "label_name", "item_sprite", "items_behavior")]
+[node name="ItemDescription" type="Node2D" parent="CanvasLayer" unique_id=1500929256 node_paths=PackedStringArray("label_description", "label_name", "item_sprite", "items_behavior", "exit_button")]
 script = ExtResource("2_s887n")
 label_description = NodePath("ItemDescription")
 label_name = NodePath("ItemName")
 item_sprite = NodePath("ItemSprite")
 items_behavior = NodePath("../Spawmer")
+exit_button = NodePath("Button")
 
 [node name="ItemSprite" type="TextureRect" parent="CanvasLayer/ItemDescription" unique_id=935131686]
 offset_left = 215.0
@@ -84,6 +85,7 @@ offset_bottom = 431.0
 text = "----------------"
 horizontal_alignment = 1
 vertical_alignment = 1
+autowrap_mode = 2
 
 [node name="ItemName" type="Label" parent="CanvasLayer/ItemDescription" unique_id=1958495009]
 offset_left = 526.0
@@ -93,6 +95,13 @@ offset_bottom = 218.0
 text = "----------------"
 horizontal_alignment = 1
 
+[node name="Button" type="Button" parent="CanvasLayer/ItemDescription" unique_id=1475189384]
+offset_left = 638.0
+offset_top = 431.0
+offset_right = 793.0
+offset_bottom = 472.0
+text = "Back"
+
 [node name="ItemCreator" type="Node" parent="." unique_id=1579872638]
 script = ExtResource("4_yyk2a")
-ItemsSprites = Array[Texture2D]([SubResource("AtlasTexture_g71ie"), SubResource("AtlasTexture_sr8g6"), SubResource("AtlasTexture_s887n"), SubResource("AtlasTexture_ylenm"), SubResource("AtlasTexture_fiysm"), SubResource("AtlasTexture_0df5h"), SubResource("AtlasTexture_p7iul"), SubResource("AtlasTexture_td2ew")])
+ItemsSprites = Array[Texture2D]([SubResource("AtlasTexture_g71ie"), SubResource("AtlasTexture_sr8g6"), SubResource("AtlasTexture_s887n"), SubResource("AtlasTexture_ylenm"), SubResource("AtlasTexture_fiysm"), SubResource("AtlasTexture_0df5h"), SubResource("AtlasTexture_p7iul"), SubResource("AtlasTexture_td2ew"), SubResource("AtlasTexture_td2ew"), SubResource("AtlasTexture_td2ew")])
