@@ -1,0 +1,195 @@
+[gd_scene format=3 uid="uid://ctciwf5uabn6l"]
+
+[ext_resource type="Script" uid="uid://c6xgilu2y2igh" path="res://scripts/worldGenController.gd" id="1_6r1qt"]
+[ext_resource type="Script" uid="uid://x5ol3g0ltt0c" path="res://scripts/cuartos_especiales.gd" id="1_vd6wd"]
+[ext_resource type="PackedScene" uid="uid://dw7blhywj7sgt" path="res://scenes/rooms/habitacion_1.tscn" id="2_8yh2u"]
+[ext_resource type="Texture2D" uid="uid://btbjnsgqqcjhk" path="res://tiles/Itemsinis (2).png" id="2_sneai"]
+[ext_resource type="PackedScene" uid="uid://c7r61akyupplm" path="res://scenes/rooms/habitacion_2.tscn" id="3_d2vo2"]
+[ext_resource type="TileSet" uid="uid://tir6tddggwiu" path="res://tiles/hola.tres" id="3_ijdfw"]
+[ext_resource type="PackedScene" uid="uid://dij08iy1b4ece" path="res://scenes/rooms/room_2.tscn" id="3_jb6a7"]
+[ext_resource type="PackedScene" uid="uid://b3asmb7bybdy7" path="res://scenes/rooms/room_1.tscn" id="3_k0ot2"]
+[ext_resource type="PackedScene" uid="uid://1hhia68t7psc" path="res://scenes/rooms/habitacion_3.tscn" id="4_o0lm6"]
+[ext_resource type="PackedScene" uid="uid://dlfyl4h3f15hf" path="res://scenes/rooms/sala_1.tscn" id="7_1w873"]
+[ext_resource type="PackedScene" uid="uid://dpk0recxmr47i" path="res://scenes/rooms/sala_2.tscn" id="8_vd6wd"]
+[ext_resource type="PackedScene" uid="uid://dgcoatxb3v5wn" path="res://scenes/rooms/sala_3.tscn" id="9_3yfn6"]
+[ext_resource type="PackedScene" uid="uid://etsb8a478yu7" path="res://scenes/rooms/cocina_1.tscn" id="10_cdyvt"]
+[ext_resource type="PackedScene" uid="uid://cka2btgitogwj" path="res://scenes/rooms/cocina_2.tscn" id="11_ewawa"]
+[ext_resource type="PackedScene" uid="uid://do1tvj1sckkcv" path="res://scenes/rooms/cocina_3.tscn" id="12_q80np"]
+[ext_resource type="PackedScene" uid="uid://okxtgce5bt82" path="res://scenes/rooms/lab_1.tscn" id="14_cdyvt"]
+[ext_resource type="PackedScene" uid="uid://dt68w1irlj883" path="res://scenes/rooms/lab_2.tscn" id="15_ewawa"]
+[ext_resource type="PackedScene" uid="uid://bgtxjuv4d3tx2" path="res://scenes/rooms/estudio_1.tscn" id="16_u77jt"]
+[ext_resource type="PackedScene" uid="uid://dq2ugsk3fh8p6" path="res://scenes/rooms/estudio_2.tscn" id="17_rt8ct"]
+[ext_resource type="PackedScene" uid="uid://ddhyccgiosub6" path="res://scenes/rooms/estudio_3.tscn" id="18_ewq6b"]
+[ext_resource type="PackedScene" uid="uid://fngdtex7k26w" path="res://scenes/rooms/bano_1.tscn" id="19_q0kxy"]
+[ext_resource type="PackedScene" uid="uid://pehpqoyxlkfi" path="res://scenes/rooms/bano_2.tscn" id="20_wr82n"]
+[ext_resource type="PackedScene" uid="uid://ckpj7qp88wrrq" path="res://scenes/rooms/bano_3.tscn" id="21_up5pg"]
+[ext_resource type="PackedScene" uid="uid://wwgwliatgrkc" path="res://scenes/rooms/bano_4.tscn" id="22_j2c5s"]
+[ext_resource type="TileSet" uid="uid://b3bhr3aer3sbk" path="res://tiles/muebles.tres" id="23_q0kxy"]
+[ext_resource type="PackedScene" uid="uid://ckx4xmktbuuou" path="res://scenes/container.tscn" id="23_txgxd"]
+[ext_resource type="PackedScene" uid="uid://dlhhllktxjwcj" path="res://scenes/player.tscn" id="24_txgxd"]
+[ext_resource type="PackedScene" uid="uid://dino4tyr5fyr1" path="res://scenes/robot_character.tscn" id="29_wr82n"]
+
+[sub_resource type="Resource" id="Resource_d11h3"]
+script = ExtResource("1_vd6wd")
+nombre_categoria = "Labs"
+variantes = Array[PackedScene]([ExtResource("14_cdyvt"), ExtResource("15_ewawa")])
+metadata/_custom_type_script = "uid://x5ol3g0ltt0c"
+
+[sub_resource type="Resource" id="Resource_mdami"]
+script = ExtResource("1_vd6wd")
+nombre_categoria = "Estudios"
+variantes = Array[PackedScene]([ExtResource("16_u77jt"), ExtResource("17_rt8ct"), ExtResource("18_ewq6b")])
+metadata/_custom_type_script = "uid://x5ol3g0ltt0c"
+
+[sub_resource type="NavigationPolygon" id="NavigationPolygon_1w873"]
+parsed_geometry_type = 1
+parsed_collision_mask = 1
+source_geometry_mode = 1
+
+[sub_resource type="GDScript" id="GDScript_q0kxy"]
+script/source = "extends Node2D
+class_name Item
+
+var item_in_inventory: bool = false
+var item_name: String
+var item_description: String
+var item_sprite: Texture2D
+var item_ID: int
+@export var ItemsSprites: Array[Texture2D]
+
+func _init(i_name: String = \"\", i_description: String = \"\", i_sprite: Texture2D = null, i_id: int = 0):
+	item_name = i_name
+	item_description = i_description
+	item_sprite = i_sprite
+	item_ID = i_id
+
+func create_item_by_id(id: int) -> Item:
+	
+	var items_data = {
+		0: {
+			\"name\": \"Flashlight\",
+			\"desc\": \"Just a flashlight, what you need to barely see those who see you clearly.\"
+		},
+		1: {
+			\"name\": \"Screwdriver\",
+			\"desc\": \"Worn out, but still useful for loose panels.\"
+		},
+		2: {
+			\"name\": \"Tweezers\",
+			\"desc\": \"Useful to cut thick things, but not that thick\"
+		},
+		3: {
+			\"name\": \"Keys\",
+			\"desc\": \"Could there be something locked up in there?\"
+		},
+		4: {
+			\"name\": \"Taser\",
+			\"desc\": \"It takes a long time to recharge, but it's useful.\"
+		},
+		5: {
+			\"name\": \"Instructions\",
+			\"desc\": \"Per maintenance protocol, the primary lockdown source is located on the rear panel.\\nAccess from the back.\"
+		},
+		6: {
+			\"name\": \"Instructions II\",
+			\"desc\": \"Cable sequence for disabling the unit:\\n\\n  1. Yellow\\n  2. Green\\n\\nDeviation from this order will result in immediate lockdown.\"
+		},
+		7: {
+			\"name\": \"Training Process\",
+			\"desc\": \"17/05/2026 \\n\\n The process keeps stalling; I haven't managed to make ECHO independent of outside influence yet. It must eventually maintain processes almost perfectly identical to mine before it is too late.\"
+		},
+		8: {
+			\"name\": \"E.C.H.O.\",
+			\"desc\": \"16/10/2024 \\n\\n A robot with almost human intelligence, born and fed from my own memories and thoughts, thus, ECHO, my continuation, will be able to serve just like me.\"
+		},
+		9: {
+			\"name\": \"3.2.2024\",
+			\"desc\": \"The doctors are wrong, I... I can't... why me? What should I expect from a 50/50 chance this shitty cancer will kill me? Is there nothing left to do but prepare myself?... \\n\\nNo, I must think rationally. I was going to die someday, but... I have so many things to create... I must finish my biggest project, which may also be my last companion...\"
+		},
+		10: {
+			\"name\": \"Pathology report\",
+			\"desc\": \"DATE: 03/12/2026    CASE ID: NP-2026-0471\\nPatient: NOSE  |  Age: 34  |  Sex: M\\n\\nDiagnosis: Glioblastoma Multiforme, Grade IV\\nTumor Margins: Negative | Vascular Invasion: Detected\\n\\nProcedure: Craniotomy — Gross Total Resection\\nResection Rate: 98.7%  |  Status: SUCCESSFUL\\nResidual Tumor Activity: Not detected\\n\\nNotes: The patient will continue to attend follow-up appointments to prevent the recurrence of cancerous tissue.\\n\\n— Dr. R. Anckerman, MD\\n--- CONFIDENTIAL ---\"
+		}
+	}
+
+	var data = items_data[id]
+	
+	var item = Item.new(
+		data[\"name\"],
+		data[\"desc\"],
+		ItemsSprites[id],
+		id
+	)
+	
+	#print(\"Item created: \", item.item_description, item.item_name)
+	
+	return item
+"
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_d2vo2"]
+atlas = ExtResource("2_sneai")
+region = Rect2(32, 16, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_esn7u"]
+atlas = ExtResource("2_sneai")
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8yh2u"]
+atlas = SubResource("AtlasTexture_esn7u")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_sneai"]
+atlas = ExtResource("2_sneai")
+region = Rect2(16, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_o0lm6"]
+atlas = ExtResource("2_sneai")
+region = Rect2(0, 16, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3traa"]
+atlas = ExtResource("2_sneai")
+region = Rect2(16, 16, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_yck0y"]
+atlas = ExtResource("2_sneai")
+region = Rect2(48, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4r77l"]
+atlas = ExtResource("2_sneai")
+region = Rect2(32, 0, 16, 16)
+
+[node name="Node2D" type="Node2D" unique_id=97602548]
+texture_filter = 1
+
+[node name="rooms" type="Node2D" parent="." unique_id=301781827]
+texture_filter = 1
+script = ExtResource("1_6r1qt")
+escenas_iniciales = Array[PackedScene]([ExtResource("2_8yh2u"), ExtResource("3_d2vo2"), ExtResource("4_o0lm6")])
+escenas_cuartos = Array[PackedScene]([ExtResource("3_k0ot2"), ExtResource("3_jb6a7"), ExtResource("7_1w873"), ExtResource("8_vd6wd"), ExtResource("9_3yfn6"), ExtResource("10_cdyvt"), ExtResource("11_ewawa"), ExtResource("12_q80np")])
+categorias_especiales = Array[ExtResource("1_vd6wd")]([SubResource("Resource_d11h3"), SubResource("Resource_mdami")])
+escenas_relleno = Array[PackedScene]([ExtResource("19_q0kxy"), ExtResource("20_wr82n"), ExtResource("21_up5pg"), ExtResource("22_j2c5s")])
+escena_contenedor = ExtResource("23_txgxd")
+
+[node name="NavigationRegion2D" type="NavigationRegion2D" parent="rooms" unique_id=196782045]
+position = Vector2(-8, -8)
+navigation_polygon = SubResource("NavigationPolygon_1w873")
+
+[node name="furniture" type="TileMapLayer" parent="rooms/NavigationRegion2D" unique_id=781536164]
+z_index = 1
+tile_set = ExtResource("23_q0kxy")
+
+[node name="floors" type="TileMapLayer" parent="rooms/NavigationRegion2D" unique_id=1162078543]
+tile_set = ExtResource("3_ijdfw")
+
+[node name="walls" type="TileMapLayer" parent="rooms/NavigationRegion2D" unique_id=1969529535 groups=["navigation"]]
+tile_set = ExtResource("3_ijdfw")
+navigation_enabled = false
+
+[node name="RobotCharacter" parent="rooms/NavigationRegion2D" unique_id=150247689 instance=ExtResource("29_wr82n")]
+position = Vector2(110.99999, 8)
+scale = Vector2(0.9999998, 0.9999998)
+
+[node name="Player" parent="." unique_id=540015378 instance=ExtResource("24_txgxd")]
+
+[node name="Node" type="Node2D" parent="." unique_id=265829545]
+script = SubResource("GDScript_q0kxy")
+ItemsSprites = Array[Texture2D]([SubResource("AtlasTexture_d2vo2"), SubResource("AtlasTexture_8yh2u"), SubResource("AtlasTexture_sneai"), SubResource("AtlasTexture_o0lm6"), SubResource("AtlasTexture_3traa"), SubResource("AtlasTexture_yck0y"), SubResource("AtlasTexture_yck0y"), SubResource("AtlasTexture_4r77l"), SubResource("AtlasTexture_4r77l"), SubResource("AtlasTexture_4r77l")])

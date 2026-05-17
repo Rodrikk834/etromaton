@@ -2,11 +2,11 @@ extends Node
 class_name WorldGenerator
 
 @export_category("Configuración de Generación")
-@export var semilla_inicial : int = 1
-@export var limite_cuartos : int = 20
+@export var semilla_inicial : int = GlobalController.world_seed
+@export var limite_cuartos : int = 100
 
 @export_category("Configuración de Pasillos (A*)")
-@export var max_length_corridor : int = 5
+@export var max_length_corridor : int = 10
 
 @export_category("Catálogo de Escenas")
 @export var escenas_iniciales : Array[PackedScene] = []
@@ -24,8 +24,13 @@ class_name WorldGenerator
 @export var id_source_piso : int = 1
 @export var atlas_piso_sellado : Vector2i = Vector2i(0, 4)
 
-@onready var mapa_piso = $NavigationRegion2D/floors
-@onready var mapa_muros = $NavigationRegion2D/walls
+@export_category("Entidades e Interacción")
+@export var escena_contenedor : PackedScene
+@export var prob_spawn_contenedor : float = 0.5 
+
+const TILE_SIZE_GEN : float = 16.0
+
+@onready var region_navegacion = $NavigationRegion2D
 
 var rng := RandomNumberGenerator.new()
 var grid : Dictionary = {}
@@ -36,25 +41,47 @@ var base_de_datos_especiales : Array = []
 var base_de_datos_relleno : Array = []
 
 var puertas_pendientes : Array = []
+var contenedores_pendientes : Array = []
 var cuartos_generados : int = 0
 var contador_instancias : int = 0
 
-# Al final de tu lista de @onready
-@onready var region_navegacion = $NavigationRegion2D
-
-# Modifica tu función _ready para incluir el llamado al final
 func _ready():
-	rng.seed = semilla_inicial
+	if semilla_inicial == 0:
+		rng.randomize() 
+	else:
+		rng.seed = semilla_inicial
+		
+	# Guarda la semilla globalmente para que los contenedores puedan acceder a ella
+	GlobalController.world_seed = rng.seed
+	print("Semilla del mundo generada: ", GlobalController.world_seed)
+
 	preparar_catalogo()
 	
 	generar_mapa()
 	_inyectar_cuartos_finales()
 	_construir_pasillos_astar()
 	_sellar_puertas_sobrantes()
-	dibujar_mapa_final()
 	
-	# Ejecutamos la navegación al final
+	dibujar_mapa_final()
+	_instanciar_entidades()
+	
 	_actualizar_mapa_navegacion()
+
+func _instanciar_entidades():
+	if escena_contenedor == null:
+		push_warning("WorldGenerator: No se asignó escena_contenedor en el Inspector.")
+		return
+		
+	for cont_data in contenedores_pendientes:
+		var nuevo_contenedor = escena_contenedor.instantiate()
+		
+		var pos_global_pixeles = (cont_data.pos_grid_cuarto * TILE_SIZE_GEN) + cont_data.pos_local_pixeles
+		
+		nuevo_contenedor.global_position = pos_global_pixeles
+		nuevo_contenedor.global_rotation = cont_data.rotacion
+		
+		# Se agregan al NavigationRegion2D para mantener orden en la escena
+		region_navegacion.add_child(nuevo_contenedor)
 
 func _actualizar_mapa_navegacion():
 	await get_tree().physics_frame
@@ -66,14 +93,10 @@ func _actualizar_mapa_navegacion():
 		region_navegacion.navigation_polygon = NavigationPolygon.new()
 		nav_poly = region_navegacion.navigation_polygon
 	
-	nav_poly.parsed_geometry_type = NavigationPolygon.PARSED_GEOMETRY_STATIC_COLLIDERS
+	nav_poly.parsed_geometry_type = NavigationPolygon.PARSED_GEOMETRY_BOTH
 	nav_poly.source_geometry_mode = NavigationPolygon.SOURCE_GEOMETRY_ROOT_NODE_CHILDREN
-	nav_poly.agent_radius = 10.0 
 	
-	# --- NUEVAS PROPIEDADES PARA SUAVIZAR EL MESH ---
-	# cell_size aumenta el tamaño de la "brocha" al hornear. 
-	# Valores más altos (ej. 2.0, 4.0 o incluso 8.0) generan un mesh mucho más recto y regular.
-	# Ve probando cuál se ajusta mejor al tamaño de tus tiles.
+	nav_poly.agent_radius = 10
 	nav_poly.cell_size = 4.0 
 	
 	region_navegacion.bake_navigation_polygon()
@@ -87,7 +110,6 @@ func _cut_out_manual(node: Node2D):
 	var polygon = region_navegacion.navigation_polygon
 	if not polygon: return
 	
-	# Búsqueda segura del hijo CollisionShape2D
 	var collision_shape: CollisionShape2D = null
 	for child in node.get_children():
 		if child is CollisionShape2D:
@@ -96,7 +118,7 @@ func _cut_out_manual(node: Node2D):
 			
 	if collision_shape and collision_shape.shape is RectangleShape2D:
 		var rect_shape = collision_shape.shape as RectangleShape2D
-		var extents = rect_shape.size / 2.0 # Godot 4 usa .size
+		var extents = rect_shape.size / 2.0 
 		
 		var vertices = [
 			Vector2(-extents.x, -extents.y),
@@ -239,6 +261,17 @@ func _registrar_cuarto_en_grid(datos_cuarto: Dictionary, posicion_global_cuarto:
 			"estilo_piso": piso_heredado,
 			"estilo_muros": datos_cuarto["estilo_muros"]
 		})
+		
+	# Procesar contenedores del cuarto
+	if datos_cuarto.has("contenedores"):
+		for cont_data in datos_cuarto.contenedores:
+			if rng.randf() <= prob_spawn_contenedor:
+				contenedores_pendientes.append({
+					"pos_grid_cuarto": posicion_global_cuarto,
+					"pos_local_pixeles": cont_data.posicion_local_pixeles,
+					"rotacion": cont_data.rotacion
+				})
+				
 	cuartos_generados += 1
 
 func _construir_pasillos_astar():
@@ -326,8 +359,6 @@ func _construir_pasillos_astar():
 					var pos_pasillo = Vector2(punto.x + x, punto.y + y)
 					if not grid.has(pos_pasillo): grid[pos_pasillo] = {}
 					
-					# --- ¡EL FIX DEL MURO FANTASMA! ---
-					# Destruimos la pared vieja para que el pasillo quede abierto
 					if grid[pos_pasillo].has("walls"):
 						grid[pos_pasillo].erase("walls")
 						
@@ -403,9 +434,13 @@ func dibujar_mapa_final():
 	for celda_global in grid:
 		var celda_vector_i = Vector2i(celda_global.x, celda_global.y)
 		var capas = grid[celda_global]
-		if capas.has("floors"):
-			var d = capas["floors"]
-			mapa_piso.set_cell(celda_vector_i, d.source_id, d.atlas_coords, d.alternative_tile)
-		if capas.has("walls"):
-			var d = capas["walls"]
-			mapa_muros.set_cell(celda_vector_i, d.source_id, d.atlas_coords, d.alternative_tile)
+		
+		for nombre_capa in capas:
+			var d = capas[nombre_capa]
+			var ruta_nodo = NodePath(str(nombre_capa))
+			var nodo_capa = region_navegacion.get_node_or_null(ruta_nodo)
+			
+			if nodo_capa and nodo_capa is TileMapLayer:
+				nodo_capa.set_cell(celda_vector_i, d.source_id, d.atlas_coords, d.alternative_tile)
+			else:
+				push_warning("WorldGenerator: No se encontró el TileMapLayer llamado '%s'. ¡Créalo en la escena principal como hijo de NavigationRegion2D!" % str(nombre_capa))

@@ -1,7 +1,8 @@
-[gd_scene format=4 uid="uid://c8uykk3s4dguc"]
+[gd_scene format=4 uid="uid://dw7blhywj7sgt"]
 
 [ext_resource type="Texture2D" uid="uid://bdi0k2vwuo0gu" path="res://tiles/Tileset - Jueguito.png" id="1_g3f8b"]
-[ext_resource type="Script" uid="uid://bj2duf5m1vbh0" path="res://scripts/readRoom.gd" id="1_p2x7v"]
+[ext_resource type="Script" path="res://scripts/readRoom.gd" id="1_p2x7v"]
+[ext_resource type="TileSet" uid="uid://c45qxqrc7o51y" path="res://tiles/muebles.tres" id="3_y7eao"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_p2x7v"]
 texture = ExtResource("1_g3f8b")
@@ -173,7 +174,19 @@ position = Vector2(-8, -8)
 tile_map_data = PackedByteArray("AAD+//z/AQAAAAIAAAD+/wIAAQABAAEAAAACAPz/AQABAAIAAAADAP//AQABAAIAAAD+//3/AQABAAEAAAD+//7/AQABAAEAAAD+////AQABAAEAAAD+/wAAAQABAAEAAAD+/wEAAQABAAEAAAD///z/AQAAAAEAAAAAAPz/AQAAAAEAAAABAPz/AQAAAAEAAAACAP3/AQAAAAAAAAACAP7/AQAAAAAAAAD+/wMAAQAAAAMAAAADAAMAAQABAAMAAAD//wMAAQABAAAAAAAAAAMAAQABAAAAAAABAAMAAQABAAAAAAACAAMAAQABAAAAAAA=")
 tile_set = SubResource("TileSet_f6vr3")
 
+[node name="furniture" type="TileMapLayer" parent="." unique_id=948440494]
+z_index = 1
+texture_filter = 5
+position = Vector2(-8, -8)
+tile_map_data = PackedByteArray("AAABAPz/AAAGAAEAAAACAPz/AAAHAAEAAAD///z/AAAAAAEAAAD///3/AAAAAAIAAAD///7/AAAAAAMAAAAAAPz/AAABAAEAAAAAAP3/AAABAAIAAAAAAP7/AAABAAMAAAD+/wMAAAACAAAAAAADAAMAAAACAAAAAAAAAAMAAAAHAAAAADABAAMAAAAGAAAAADA=")
+tile_set = ExtResource("3_y7eao")
+
 [node name="doors" type="Node2D" parent="." unique_id=1066864746]
 
 [node name="door1" type="Marker2D" parent="doors" unique_id=1472535065]
 position = Vector2(56, 16)
+
+[node name="containers" type="Node2D" parent="." unique_id=1956848748]
+
+[node name="container1" type="Marker2D" parent="containers" unique_id=1807096756]
+position = Vector2(-32, 8)

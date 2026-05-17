@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://c35p5r3qk0lto"]
 
-[ext_resource type="Script" path="res://scripts/taser_ray.gd" id="1_4m7up"]
+[ext_resource type="Script" uid="uid://btxg85c51pqpv" path="res://scripts/taser_ray.gd" id="1_4m7up"]
 [ext_resource type="Texture2D" uid="uid://ba388x5gxamce" path="res://tiles/TaserDisparo.png" id="1_d0rdt"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_4m7up"]

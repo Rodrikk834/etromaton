@@ -1,0 +1,20 @@
+[gd_scene format=3 uid="uid://bdfq11qlccitt"]
+
+[ext_resource type="Script" uid="uid://danll7r4etdtb" path="res://scripts/globalController.gd" id="1_68ukk"]
+[ext_resource type="Script" uid="uid://ybkrlsjx2bkj" path="res://scripts/items.gd" id="2_psh0i"]
+[ext_resource type="Texture2D" uid="uid://btbjnsgqqcjhk" path="res://tiles/Itemsinis (2).png" id="3_q4c7q"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_tmbko"]
+atlas = ExtResource("3_q4c7q")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="Resource" id="Resource_7k5ho"]
+script = ExtResource("2_psh0i")
+item_name = "Screwdriver"
+item_description = "Worn out, but still useful for loose panels."
+item_sprite = SubResource("AtlasTexture_tmbko")
+metadata/_custom_type_script = "uid://ybkrlsjx2bkj"
+
+[node name="globalController" type="Node2D" unique_id=1032393119]
+script = ExtResource("1_68ukk")
+items_array = Array[ExtResource("2_psh0i")]([SubResource("Resource_7k5ho")])

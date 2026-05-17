@@ -29,6 +29,10 @@ Inventory="*uid://lbrtp0ttlbkp"
 
 enabled=PackedStringArray("res://addons/dialogue_manager/plugin.cfg")
 
+[autoload]
+
+GlobalController="*uid://bdfq11qlccitt"
+
 [global_group]
 
 player=""

@@ -2,6 +2,7 @@
 
 [ext_resource type="Texture2D" uid="uid://bdi0k2vwuo0gu" path="res://tiles/Tileset - Jueguito.png" id="1_mt1hq"]
 [ext_resource type="Script" uid="uid://bj2duf5m1vbh0" path="res://scripts/readRoom.gd" id="1_vb6b6"]
+[ext_resource type="TileSet" uid="uid://b3bhr3aer3sbk" path="res://tiles/muebles.tres" id="3_5rq58"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_mt1hq"]
 texture = ExtResource("1_mt1hq")
@@ -158,6 +159,7 @@ physics_layer_0/collision_layer = 1
 sources/1 = SubResource("TileSetAtlasSource_vb6b6")
 
 [node name="bano_1" type="Node2D" unique_id=69572277]
+texture_filter = 1
 script = ExtResource("1_vb6b6")
 
 [node name="floors" type="TileMapLayer" parent="." unique_id=1531985577]
@@ -172,6 +174,12 @@ texture_filter = 1
 position = Vector2(-8, -8)
 tile_map_data = PackedByteArray("AAACAAAAAQADAAMAAAD//wAAAQACAAMAAAACAP3/AQACAAAAAAACAP7/AQACAAAAAAACAP//AQACAAAAAAAAAAAAAQADAAAAAAABAAAAAQADAAAAAAACAPz/AQADAAIAAAD///z/AQACAAIAAAAAAPz/AQACAAEAAAABAPz/AQACAAEAAAA=")
 tile_set = SubResource("TileSet_jdg2k")
+
+[node name="furniture" type="TileMapLayer" parent="." unique_id=233648558]
+z_index = 1
+position = Vector2(-8, -8)
+tile_map_data = PackedByteArray("AAABAPz/AAAHAAIAAAD//wAAAAACAAAAAAAAAP3/AAADAAAAAAABAP3/AAAFAAAAAAAAAP7/AAADAAEAAAABAP7/AAAFAAEAAAA=")
+tile_set = ExtResource("3_5rq58")
 
 [node name="doors" type="Node2D" parent="." unique_id=1227095604]
 

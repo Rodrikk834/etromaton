@@ -1,7 +1,8 @@
-[gd_scene format=4 uid="uid://cg7b25pce1o3p"]
+[gd_scene format=4 uid="uid://dgcoatxb3v5wn"]
 
 [ext_resource type="Script" uid="uid://bj2duf5m1vbh0" path="res://scripts/readRoom.gd" id="1_ebpw4"]
 [ext_resource type="Texture2D" uid="uid://bdi0k2vwuo0gu" path="res://tiles/Tileset - Jueguito.png" id="1_pqrva"]
+[ext_resource type="TileSet" uid="uid://b3bhr3aer3sbk" path="res://tiles/muebles.tres" id="3_m6sl5"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_pqrva"]
 texture = ExtResource("1_pqrva")
@@ -173,6 +174,13 @@ position = Vector2(-8, -8)
 tile_map_data = PackedByteArray("AAD8//z/AQAAAAIAAAAGAAYAAQABAAMAAAAGAAAAAQABAAIAAAAFAP//AQABAAIAAAAEAP7/AQABAAIAAAADAP3/AQABAAIAAAACAPz/AQABAAIAAAD8/wIAAQAAAAMAAAD9/wMAAQAAAAMAAAD+/wQAAQAAAAMAAAD//wUAAQAAAAMAAAAAAAYAAQAAAAMAAAAGAAIAAQAAAAAAAAAGAAEAAQAAAAAAAAACAAYAAQABAAAAAAABAAYAAQABAAAAAAD8/wAAAQABAAEAAAD8/wEAAQABAAEAAAAAAPz/AQAAAAEAAAABAPz/AQAAAAEAAAA=")
 tile_set = SubResource("TileSet_5dtto")
 
+[node name="furniture" type="TileMapLayer" parent="." unique_id=1131993292]
+z_index = 1
+texture_filter = 5
+position = Vector2(-8, -8)
+tile_map_data = PackedByteArray("AAAGAAYAAAACAAAAAAD8//z/AAACAAAAAAAAAAEAAAAAAAQAAAAAAAIAAAAAAAUAAAABAAEAAAABAAQAAAABAAIAAAABAAUAAAD8/wEAAAAFAAMAAGD8/wAAAAAGAAMAAGAGAAIAAAAGAAMAAFAGAAEAAAAFAAMAAFAAAP7/AAAGAAAAAAABAP7/AAAHAAAAAAAEAAEAAAAGAAAAAFAEAAIAAAAHAAAAAFACAPz/AAACAAAAAAA=")
+tile_set = ExtResource("3_m6sl5")
+
 [node name="doors" type="Node2D" parent="." unique_id=549666407]
 
 [node name="door1" type="Marker2D" parent="doors" unique_id=1361851623]
@@ -189,3 +197,13 @@ rotation = 3.1415927
 [node name="door4" type="Marker2D" parent="doors" unique_id=1355725764]
 position = Vector2(-32, -72)
 rotation = 4.712389
+
+[node name="containers" type="Node2D" parent="." unique_id=705382878]
+
+[node name="container1" type="Marker2D" parent="containers" unique_id=1544007878]
+position = Vector2(16, 112)
+rotation = 4.712389
+
+[node name="container2" type="Marker2D" parent="containers" unique_id=524406957]
+position = Vector2(16, -64)
+rotation = 1.5707964
