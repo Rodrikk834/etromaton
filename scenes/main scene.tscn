@@ -7,7 +7,6 @@
 [ext_resource type="TileSet" uid="uid://tir6tddggwiu" path="res://tiles/hola.tres" id="3_ijdfw"]
 [ext_resource type="PackedScene" uid="uid://dec2mp6etjb5u" path="res://scenes/rooms/room_2.tscn" id="3_jb6a7"]
 [ext_resource type="PackedScene" uid="uid://b3asmb7bybdy7" path="res://scenes/rooms/room_1.tscn" id="3_k0ot2"]
-[ext_resource type="Script" uid="uid://p6e887arta1v" path="res://scripts/ItemClass.gd" id="4_jb6a7"]
 [ext_resource type="PackedScene" uid="uid://bcnoyf5524qd8" path="res://scenes/rooms/habitacion_3.tscn" id="4_o0lm6"]
 [ext_resource type="Texture2D" uid="uid://uqd71e7kkbee" path="res://tiles/CirculoBlanco.png" id="5_esn7u"]
 [ext_resource type="PackedScene" uid="uid://c0racvy6eraes" path="res://scenes/rooms/sala_1.tscn" id="7_1w873"]
@@ -26,6 +25,7 @@
 [ext_resource type="PackedScene" uid="uid://ckpj7qp88wrrq" path="res://scenes/rooms/bano_3.tscn" id="21_up5pg"]
 [ext_resource type="PackedScene" uid="uid://wwgwliatgrkc" path="res://scenes/rooms/bano_4.tscn" id="22_j2c5s"]
 [ext_resource type="PackedScene" uid="uid://dlhhllktxjwcj" path="res://scenes/player.tscn" id="24_txgxd"]
+[ext_resource type="Script" uid="uid://bwghdci3tb36a" path="res://scripts/item.gd" id="26_wr82n"]
 [ext_resource type="PackedScene" uid="uid://ckx4xmktbuuou" path="res://scenes/container.tscn" id="28_wr82n"]
 [ext_resource type="PackedScene" uid="uid://15ami8ai0cvu" path="res://scenes/inventory.tscn" id="29_up5pg"]
 [ext_resource type="PackedScene" uid="uid://dino4tyr5fyr1" path="res://scenes/robot_character.tscn" id="29_wr82n"]
@@ -81,7 +81,7 @@ scale = Vector2(0.9999998, 0.9999998)
 [node name="Item" type="Area2D" parent="." unique_id=424996310]
 position = Vector2(110, 39)
 scale = Vector2(0.1, 0.1)
-script = ExtResource("4_jb6a7")
+script = ExtResource("26_wr82n")
 
 [node name="Sprite2D" type="Sprite2D" parent="Item" unique_id=16205054]
 position = Vector2(-3.9999924, 4.9999695)

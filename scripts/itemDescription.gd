@@ -21,7 +21,7 @@ func quit_description() -> void:
 func _ready() -> void:
 	quit_description()
 	label_name.add_theme_font_size_override("font_size", 32)
-	label_description.add_theme_font_size_override("font_size", 20)
+	label_description.add_theme_font_size_override("font_size", 15)
 	
 	exit_button.pressed.connect(func():
 		exit_description()

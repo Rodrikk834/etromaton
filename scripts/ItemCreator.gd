@@ -27,23 +27,27 @@ func create_item_by_id(id: int) -> Item:
 		},
 		5: {
 			"name": "Instructions",
-			"desc": "A dónde mirar? Al panel en la espalda del robot"
+			"desc": "Per maintenance protocol, the primary lockdown source is located on the rear panel.\nAccess from the back."
 		},
 		6: {
 			"name": "Instructions II",
-			"desc": "Orden de cable a cortar: amarillo, verde"
+			"desc": "Cable sequence for disabling the unit:\n\n  1. Yellow\n  2. Green\n\nDeviation from this order will result in immediate lockdown."
 		},
 		7: {
-			"name": "Notes",
-			"desc": "Nota 1 ns ahora la escribo"
+			"name": "Training Process",
+			"desc": "17/05/2026 \n\n The process keeps stalling; I haven't managed to make ECHO independent of outside influence yet. It must eventually maintain processes almost perfectly identical to mine before it is too late."
 		},
 		8: {
-			"name": "Notes",
-			"desc": "Nota 2 ns ahora la escribo"
+			"name": "E.C.H.O.",
+			"desc": "16/10/2024 \n\n A robot with almost human intelligence, born and fed from my own memories and thoughts, thus, ECHO, my continuation, will be able to serve just like me."
 		},
 		9: {
-			"name": "Notes",
-			"desc": "Nota 3 ns ahora la escribo"
+			"name": "3.2.2024",
+			"desc": "The doctors are wrong, I... I can't... why me? What should I expect from a 50/50 chance this shitty cancer will kill me? Is there nothing left to do but prepare myself?... \n\nNo, I must think rationally. I was going to die someday, but... I have so many things to create... I must finish my biggest project, which may also be my last companion..."
+		},
+		10: {
+			"name": "Pathology report",
+			"desc": "DATE: 03/12/2026    CASE ID: NP-2026-0471\nPatient: NOSE  |  Age: 34  |  Sex: M\n\nDiagnosis: Glioblastoma Multiforme, Grade IV\nTumor Margins: Negative | Vascular Invasion: Detected\n\nProcedure: Craniotomy — Gross Total Resection\nResection Rate: 98.7%  |  Status: SUCCESSFUL\nResidual Tumor Activity: Not detected\n\nNotes: The patient will continue to attend follow-up appointments to prevent the recurrence of cancerous tissue.\n\n— Dr. R. Anckerman, MD\n--- CONFIDENTIAL ---"
 		}
 	}
 

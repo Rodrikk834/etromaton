@@ -82,4 +82,5 @@ func _ready() -> void:
 	create_sprite(7)
 	create_sprite(8)
 	create_sprite(9)
+	create_sprite(10)
 	quit_inventory_spawmer()

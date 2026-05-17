@@ -71,37 +71,37 @@ items_behavior = NodePath("../Spawmer")
 exit_button = NodePath("Button")
 
 [node name="ItemSprite" type="TextureRect" parent="CanvasLayer/ItemDescription" unique_id=935131686]
-offset_left = 215.0
-offset_top = 194.0
-offset_right = 474.0
-offset_bottom = 446.0
+offset_left = 228.0
+offset_top = 200.0
+offset_right = 487.0
+offset_bottom = 452.0
 expand_mode = 1
 
 [node name="ItemDescription" type="Label" parent="CanvasLayer/ItemDescription" unique_id=1211785534]
-offset_left = 559.0
-offset_top = 272.0
-offset_right = 878.0
-offset_bottom = 431.0
+offset_left = 539.0
+offset_top = 211.0
+offset_right = 915.0
+offset_bottom = 532.0
 text = "----------------"
 horizontal_alignment = 1
 vertical_alignment = 1
 autowrap_mode = 2
 
 [node name="ItemName" type="Label" parent="CanvasLayer/ItemDescription" unique_id=1958495009]
-offset_left = 526.0
-offset_top = 195.0
-offset_right = 921.0
-offset_bottom = 218.0
+offset_left = 527.0
+offset_top = 164.0
+offset_right = 922.0
+offset_bottom = 187.0
 text = "----------------"
 horizontal_alignment = 1
 
 [node name="Button" type="Button" parent="CanvasLayer/ItemDescription" unique_id=1475189384]
-offset_left = 638.0
-offset_top = 431.0
-offset_right = 793.0
-offset_bottom = 472.0
+offset_left = 275.0
+offset_top = 471.0
+offset_right = 430.0
+offset_bottom = 512.0
 text = "Back"
 
 [node name="ItemCreator" type="Node" parent="." unique_id=1579872638]
 script = ExtResource("4_yyk2a")
-ItemsSprites = Array[Texture2D]([SubResource("AtlasTexture_g71ie"), SubResource("AtlasTexture_sr8g6"), SubResource("AtlasTexture_s887n"), SubResource("AtlasTexture_ylenm"), SubResource("AtlasTexture_fiysm"), SubResource("AtlasTexture_0df5h"), SubResource("AtlasTexture_p7iul"), SubResource("AtlasTexture_td2ew"), SubResource("AtlasTexture_td2ew"), SubResource("AtlasTexture_td2ew")])
+ItemsSprites = Array[Texture2D]([SubResource("AtlasTexture_g71ie"), SubResource("AtlasTexture_sr8g6"), SubResource("AtlasTexture_s887n"), SubResource("AtlasTexture_ylenm"), SubResource("AtlasTexture_fiysm"), SubResource("AtlasTexture_0df5h"), SubResource("AtlasTexture_p7iul"), SubResource("AtlasTexture_td2ew"), SubResource("AtlasTexture_td2ew"), SubResource("AtlasTexture_td2ew"), SubResource("AtlasTexture_td2ew")])

@@ -19,6 +19,11 @@ config/icon="res://tiles/icon.svg"
 [autoload]
 
 PlayerInventory="*uid://15ami8ai0cvu"
+DialogueManager="*uid://c3rodes2l3gxb"
+
+[editor_plugins]
+
+enabled=PackedStringArray("res://addons/dialogue_manager/plugin.cfg")
 
 [gui]
 
@@ -56,6 +61,10 @@ shoot={
 "events": [Object(InputEventMouseButton,"resource_local_to_scene":false,"resource_name":"","device":-1,"window_id":0,"alt_pressed":false,"shift_pressed":false,"ctrl_pressed":false,"meta_pressed":false,"button_mask":0,"position":Vector2(0, 0),"global_position":Vector2(0, 0),"factor":1.0,"button_index":1,"canceled":false,"pressed":false,"double_click":false,"script":null)
 ]
 }
+
+[internationalization]
+
+locale/translations_pot_files=PackedStringArray("res://dialogs/d_start.dialogue", "res://dialogs/d_seeRobot.dialogue", "res://dialogs/d_note1.dialogue", "res://dialogs/d_note2.dialogue", "res://dialogs/d_note3.dialogue", "res://dialogs/d_final.dialogue", "res://dialogs/d_taser.dialogue")
 
 [physics]
 

@@ -1,0 +1,16 @@
+[remap]
+
+importer="dialogue_manager"
+importer_version=15
+type="Resource"
+uid="uid://c2dgdryqbrttu"
+path="res://.godot/imported/d_seeRobot.dialogue-604330b4bfae57f0ea2a80914864a529.tres"
+
+[deps]
+
+source_file="res://dialogs/d_seeRobot.dialogue"
+dest_files=["res://.godot/imported/d_seeRobot.dialogue-604330b4bfae57f0ea2a80914864a529.tres"]
+
+[params]
+
+defaults=true
