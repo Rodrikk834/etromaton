@@ -3,10 +3,7 @@
 [ext_resource type="Script" uid="uid://c6xgilu2y2igh" path="res://scripts/worldGenController.gd" id="1_6r1qt"]
 [ext_resource type="Script" uid="uid://x5ol3g0ltt0c" path="res://scenes/cuartos_especiales.gd" id="1_vd6wd"]
 [ext_resource type="PackedScene" uid="uid://c8uykk3s4dguc" path="res://scenes/rooms/habitacion_1.tscn" id="2_8yh2u"]
-[ext_resource type="Script" uid="uid://yn6eexbahhdf" path="res://scripts/player.gd" id="2_ijdfw"]
-[ext_resource type="Texture2D" uid="uid://d3k6gj0254vxo" path="res://tiles/icon.svg" id="2_k0ot2"]
 [ext_resource type="PackedScene" uid="uid://15cn32x8o1mr" path="res://scenes/rooms/habitacion_2.tscn" id="3_d2vo2"]
-[ext_resource type="PackedScene" uid="uid://c35p5r3qk0lto" path="res://scenes/taser_ray.tscn" id="3_esn7u"]
 [ext_resource type="TileSet" uid="uid://tir6tddggwiu" path="res://tiles/hola.tres" id="3_ijdfw"]
 [ext_resource type="PackedScene" uid="uid://dec2mp6etjb5u" path="res://scenes/rooms/room_2.tscn" id="3_jb6a7"]
 [ext_resource type="PackedScene" uid="uid://b3asmb7bybdy7" path="res://scenes/rooms/room_1.tscn" id="3_k0ot2"]
@@ -28,6 +25,8 @@
 [ext_resource type="PackedScene" uid="uid://pehpqoyxlkfi" path="res://scenes/rooms/bano_2.tscn" id="20_wr82n"]
 [ext_resource type="PackedScene" uid="uid://ckpj7qp88wrrq" path="res://scenes/rooms/bano_3.tscn" id="21_up5pg"]
 [ext_resource type="PackedScene" uid="uid://wwgwliatgrkc" path="res://scenes/rooms/bano_4.tscn" id="22_j2c5s"]
+[ext_resource type="PackedScene" uid="uid://dlhhllktxjwcj" path="res://scenes/player.tscn" id="24_txgxd"]
+[ext_resource type="PackedScene" uid="uid://dino4tyr5fyr1" path="res://scenes/robot_character.tscn" id="29_wr82n"]
 
 [sub_resource type="Resource" id="Resource_q80np"]
 script = ExtResource("1_vd6wd")
@@ -42,14 +41,10 @@ variantes = Array[PackedScene]([ExtResource("16_u77jt"), ExtResource("17_rt8ct")
 metadata/_custom_type_script = "uid://x5ol3g0ltt0c"
 
 [sub_resource type="NavigationPolygon" id="NavigationPolygon_1w873"]
+sample_partition_type = 1
 parsed_geometry_type = 1
+parsed_collision_mask = 1
 source_geometry_mode = 1
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_jb6a7"]
-size = Vector2(125, 125)
-
-[sub_resource type="CircleShape2D" id="CircleShape2D_k0ot2"]
-radius = 97.46
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_sneai"]
 radius = 43.47
@@ -71,33 +66,15 @@ navigation_polygon = SubResource("NavigationPolygon_1w873")
 [node name="floors" type="TileMapLayer" parent="rooms/NavigationRegion2D" unique_id=1162078543]
 tile_set = ExtResource("3_ijdfw")
 
-[node name="walls" type="TileMapLayer" parent="rooms/NavigationRegion2D" unique_id=1969529535]
+[node name="walls" type="TileMapLayer" parent="rooms/NavigationRegion2D" unique_id=1969529535 groups=["navigation"]]
 tile_set = ExtResource("3_ijdfw")
+navigation_enabled = false
 
-[node name="Player" type="CharacterBody2D" parent="." unique_id=1272999153]
-scale = Vector2(0.1, 0.1)
-script = ExtResource("2_ijdfw")
-bullet_scene = ExtResource("3_esn7u")
+[node name="RobotCharacter" parent="rooms/NavigationRegion2D" unique_id=150247689 instance=ExtResource("29_wr82n")]
+position = Vector2(8, 8)
+scale = Vector2(0.9999998, 0.9999998)
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Player" unique_id=421983967]
-position = Vector2(0.5, -0.5)
-shape = SubResource("RectangleShape2D_jb6a7")
-
-[node name="Sprite2D" type="Sprite2D" parent="Player" unique_id=2058014291]
-rotation = 1.5707964
-texture = ExtResource("2_k0ot2")
-
-[node name="PickUpArea" type="Area2D" parent="Player" unique_id=488253357]
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Player/PickUpArea" unique_id=463015488]
-shape = SubResource("CircleShape2D_k0ot2")
-
-[node name="ShootPos" type="Node2D" parent="Player" unique_id=158454658]
-position = Vector2(89, -1)
-
-[node name="Camera2D" type="Camera2D" parent="Player" unique_id=1317023274]
-zoom = Vector2(3, 3)
-position_smoothing_enabled = true
+[node name="Player" parent="." unique_id=540015378 instance=ExtResource("24_txgxd")]
 
 [node name="Item" type="Area2D" parent="." unique_id=424996310]
 position = Vector2(110, 39)
@@ -112,6 +89,3 @@ texture = ExtResource("5_esn7u")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Item" unique_id=1742457022]
 position = Vector2(-4, 5)
 shape = SubResource("CircleShape2D_sneai")
-
-[connection signal="area_entered" from="Player/PickUpArea" to="Player" method="_on_pick_up_area_area_entered"]
-[connection signal="area_exited" from="Player/PickUpArea" to="Player" method="_on_pick_up_area_area_exited"]

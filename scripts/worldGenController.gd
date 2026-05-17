@@ -39,6 +39,10 @@ var puertas_pendientes : Array = []
 var cuartos_generados : int = 0
 var contador_instancias : int = 0
 
+# Al final de tu lista de @onready
+@onready var region_navegacion = $NavigationRegion2D
+
+# Modifica tu función _ready para incluir el llamado al final
 func _ready():
 	rng.seed = semilla_inicial
 	preparar_catalogo()
@@ -48,7 +52,68 @@ func _ready():
 	_construir_pasillos_astar()
 	_sellar_puertas_sobrantes()
 	dibujar_mapa_final()
+	
+	# Ejecutamos la navegación al final
+	_actualizar_mapa_navegacion()
 
+func _actualizar_mapa_navegacion():
+	await get_tree().physics_frame
+	
+	if not region_navegacion: return
+	
+	var nav_poly = region_navegacion.navigation_polygon
+	if nav_poly == null:
+		region_navegacion.navigation_polygon = NavigationPolygon.new()
+		nav_poly = region_navegacion.navigation_polygon
+	
+	nav_poly.parsed_geometry_type = NavigationPolygon.PARSED_GEOMETRY_STATIC_COLLIDERS
+	nav_poly.source_geometry_mode = NavigationPolygon.SOURCE_GEOMETRY_ROOT_NODE_CHILDREN
+	nav_poly.agent_radius = 10.0 
+	
+	# --- NUEVAS PROPIEDADES PARA SUAVIZAR EL MESH ---
+	# cell_size aumenta el tamaño de la "brocha" al hornear. 
+	# Valores más altos (ej. 2.0, 4.0 o incluso 8.0) generan un mesh mucho más recto y regular.
+	# Ve probando cuál se ajusta mejor al tamaño de tus tiles.
+	nav_poly.cell_size = 4.0 
+	
+	region_navegacion.bake_navigation_polygon()
+	
+	for nodo in get_tree().get_nodes_in_group("navigation"):
+		if nodo is TileMapLayer: continue
+		if nodo is Node2D:
+			_cut_out_manual(nodo)
+
+func _cut_out_manual(node: Node2D):
+	var polygon = region_navegacion.navigation_polygon
+	if not polygon: return
+	
+	# Búsqueda segura del hijo CollisionShape2D
+	var collision_shape: CollisionShape2D = null
+	for child in node.get_children():
+		if child is CollisionShape2D:
+			collision_shape = child
+			break
+			
+	if collision_shape and collision_shape.shape is RectangleShape2D:
+		var rect_shape = collision_shape.shape as RectangleShape2D
+		var extents = rect_shape.size / 2.0 # Godot 4 usa .size
+		
+		var vertices = [
+			Vector2(-extents.x, -extents.y),
+			Vector2(extents.x, -extents.y),
+			Vector2(extents.x, extents.y),
+			Vector2(-extents.x, extents.y)
+		]
+
+		var new_outline = PackedVector2Array()
+		var shape_transform = collision_shape.global_transform
+		for vertex in vertices:
+			new_outline.append(shape_transform * vertex)
+
+		polygon.add_outline(new_outline)
+		polygon.make_polygons_from_outlines()
+		region_navegacion.navigation_polygon = polygon
+		
 func preparar_catalogo():
 	base_de_datos_iniciales = _procesar_array_escenas(escenas_iniciales)
 	base_de_datos_cuartos = _procesar_array_escenas(escenas_cuartos)
