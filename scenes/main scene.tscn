@@ -25,6 +25,7 @@
 [ext_resource type="PackedScene" uid="uid://pehpqoyxlkfi" path="res://scenes/rooms/bano_2.tscn" id="20_wr82n"]
 [ext_resource type="PackedScene" uid="uid://ckpj7qp88wrrq" path="res://scenes/rooms/bano_3.tscn" id="21_up5pg"]
 [ext_resource type="PackedScene" uid="uid://wwgwliatgrkc" path="res://scenes/rooms/bano_4.tscn" id="22_j2c5s"]
+[ext_resource type="TileSet" uid="uid://b3bhr3aer3sbk" path="res://tiles/muebles.tres" id="23_q0kxy"]
 [ext_resource type="PackedScene" uid="uid://dlhhllktxjwcj" path="res://scenes/player.tscn" id="24_txgxd"]
 [ext_resource type="PackedScene" uid="uid://dino4tyr5fyr1" path="res://scenes/robot_character.tscn" id="29_wr82n"]
 
@@ -50,6 +51,7 @@ source_geometry_mode = 1
 radius = 43.47
 
 [node name="Node2D" type="Node2D" unique_id=97602548]
+texture_filter = 1
 
 [node name="rooms" type="Node2D" parent="." unique_id=301781827]
 texture_filter = 1
@@ -63,6 +65,10 @@ escenas_relleno = Array[PackedScene]([ExtResource("19_q0kxy"), ExtResource("20_w
 position = Vector2(-8, -8)
 navigation_polygon = SubResource("NavigationPolygon_1w873")
 
+[node name="furniture" type="TileMapLayer" parent="rooms/NavigationRegion2D" unique_id=781536164]
+z_index = 1
+tile_set = ExtResource("23_q0kxy")
+
 [node name="floors" type="TileMapLayer" parent="rooms/NavigationRegion2D" unique_id=1162078543]
 tile_set = ExtResource("3_ijdfw")
 
@@ -71,7 +77,7 @@ tile_set = ExtResource("3_ijdfw")
 navigation_enabled = false
 
 [node name="RobotCharacter" parent="rooms/NavigationRegion2D" unique_id=150247689 instance=ExtResource("29_wr82n")]
-position = Vector2(8, 8)
+position = Vector2(110.99999, 8)
 scale = Vector2(0.9999998, 0.9999998)
 
 [node name="Player" parent="." unique_id=540015378 instance=ExtResource("24_txgxd")]
