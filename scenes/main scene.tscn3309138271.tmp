@@ -1,0 +1,67 @@
+[gd_scene format=3 uid="uid://ctciwf5uabn6l"]
+
+[ext_resource type="Script" uid="uid://dwvveni5viii0" path="res://scripts/worldGenController.gd" id="1_6r1qt"]
+[ext_resource type="Texture2D" uid="uid://bdi0k2vwuo0gu" path="res://tiles/Tileset - Jueguito.png" id="2_ce2h5"]
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_ce2h5"]
+texture = ExtResource("2_ce2h5")
+0:0/0 = 0
+1:0/0 = 0
+2:0/0 = 0
+3:0/0 = 0
+4:0/0 = 0
+5:0/0 = 0
+6:0/0 = 0
+7:0/0 = 0
+0:1/0 = 0
+1:1/0 = 0
+2:1/0 = 0
+3:1/0 = 0
+4:1/0 = 0
+5:1/0 = 0
+6:1/0 = 0
+7:1/0 = 0
+0:2/0 = 0
+1:2/0 = 0
+2:2/0 = 0
+3:2/0 = 0
+4:2/0 = 0
+5:2/0 = 0
+6:2/0 = 0
+7:2/0 = 0
+0:3/0 = 0
+1:3/0 = 0
+2:3/0 = 0
+3:3/0 = 0
+4:3/0 = 0
+5:3/0 = 0
+6:3/0 = 0
+7:3/0 = 0
+0:4/0 = 0
+1:4/0 = 0
+2:4/0 = 0
+3:4/0 = 0
+4:4/0 = 0
+5:4/0 = 0
+
+[sub_resource type="TileSet" id="TileSet_k0ot2"]
+sources/0 = SubResource("TileSetAtlasSource_ce2h5")
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_abh30"]
+
+[node name="Node2D" type="Node2D" unique_id=97602548]
+
+[node name="Grid" type="TileMapLayer" parent="." unique_id=1162078543]
+position = Vector2(-8, -8)
+tile_set = SubResource("TileSet_k0ot2")
+
+[node name="rooms" type="Node2D" parent="." unique_id=301781827]
+script = ExtResource("1_6r1qt")
+
+[node name="CharacterBody2D" type="CharacterBody2D" parent="." unique_id=1728922544]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="CharacterBody2D" unique_id=426917745]
+shape = SubResource("RectangleShape2D_abh30")
+
+[node name="Camera2D" type="Camera2D" parent="CharacterBody2D" unique_id=541668886]
+zoom = Vector2(10, 10)
