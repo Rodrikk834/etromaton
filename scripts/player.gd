@@ -1,6 +1,6 @@
 extends CharacterBody2D
 
-@export var move_speed: float = 250.0
+@export var move_speed: float = 100
 @export var bullet_scene: PackedScene
 
 var nearby_item = null

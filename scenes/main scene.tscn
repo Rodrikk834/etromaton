@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" uid="uid://c6xgilu2y2igh" path="res://scripts/worldGenController.gd" id="1_6r1qt"]
 [ext_resource type="PackedScene" uid="uid://c8uykk3s4dguc" path="res://scenes/rooms/habitacion_1.tscn" id="2_8yh2u"]
-[ext_resource type="Script" path="res://scripts/player.gd" id="2_ijdfw"]
+[ext_resource type="Script" uid="uid://yn6eexbahhdf" path="res://scripts/player.gd" id="2_ijdfw"]
 [ext_resource type="Texture2D" uid="uid://d3k6gj0254vxo" path="res://tiles/icon.svg" id="2_k0ot2"]
 [ext_resource type="PackedScene" uid="uid://15cn32x8o1mr" path="res://scenes/rooms/habitacion_2.tscn" id="3_d2vo2"]
 [ext_resource type="PackedScene" uid="uid://c35p5r3qk0lto" path="res://scenes/taser_ray.tscn" id="3_esn7u"]
@@ -39,7 +39,7 @@ position = Vector2(-8, -8)
 tile_set = ExtResource("3_ijdfw")
 
 [node name="Player" type="CharacterBody2D" parent="." unique_id=1272999153]
-scale = Vector2(0.2, 0.2)
+scale = Vector2(0.1, 0.1)
 script = ExtResource("2_ijdfw")
 bullet_scene = ExtResource("3_esn7u")
 
@@ -60,10 +60,12 @@ shape = SubResource("CircleShape2D_k0ot2")
 position = Vector2(89, -1)
 
 [node name="Camera2D" type="Camera2D" parent="Player" unique_id=1317023274]
-scale = Vector2(5, 5)
+zoom = Vector2(3, 3)
+position_smoothing_enabled = true
 
 [node name="Item" type="Area2D" parent="." unique_id=424996310]
-position = Vector2(833, 325)
+position = Vector2(110, 39)
+scale = Vector2(0.1, 0.1)
 script = ExtResource("4_jb6a7")
 
 [node name="Sprite2D" type="Sprite2D" parent="Item" unique_id=16205054]
