@@ -18,6 +18,7 @@ func exportar_datos_matematicos(id_asignado : int) -> Dictionary:
 		"tipo": tipo_cuarto,
 		"direcciones_soportadas": [],
 		"puertas": [],
+		"contenedores": [],
 		"tiles_ocupados": [],
 		"bounding_box": Rect2(),
 		"estilo_muros": {
@@ -29,7 +30,7 @@ func exportar_datos_matematicos(id_asignado : int) -> Dictionary:
 		}
 	}
 	
-	_escanear_puertas(dict_cuarto)
+	_escanear_marcadores(dict_cuarto)
 	_escanear_tiles_y_limites(dict_cuarto)
 	
 	return dict_cuarto
@@ -37,20 +38,31 @@ func exportar_datos_matematicos(id_asignado : int) -> Dictionary:
 # =========================================================
 # FUNCIONES INTERNAS DE ESCANEO
 # =========================================================
-func _escanear_puertas(dict_cuarto : Dictionary):
-	var nodos_puerta = find_children("*", "Marker2D")
+func _escanear_marcadores(dict_cuarto : Dictionary):
+	# Busca todos los Marker2D en toda la jerarquía del cuarto
+	var nodos_marker = find_children("*", "Marker2D")
 	
-	for puerta in nodos_puerta:
-		var direccion_limpia = Vector2.RIGHT.rotated(puerta.global_rotation).round()
-		var pos_logica = (puerta.position / TILE_SIZE).floor()
+	for marker in nodos_marker:
+		# Convertimos el nombre a minúsculas para que atrape "container1", "Container2", etc.
+		var nombre_minusculas = marker.name.to_lower()
 		
-		dict_cuarto["puertas"].append({
-			"posicion_local": pos_logica,
-			"direccion": direccion_limpia
-		})
-		
-		if not direccion_limpia in dict_cuarto["direcciones_soportadas"]:
-			dict_cuarto["direcciones_soportadas"].append(direccion_limpia)
+		if "contenedor" in nombre_minusculas or "container" in nombre_minusculas:
+			dict_cuarto["contenedores"].append({
+				"posicion_local_pixeles": marker.position,
+				"rotacion": marker.global_rotation
+			})
+		else:
+			# Si no es contenedor, asumimos que es una puerta (como door1, door2)
+			var direccion_limpia = Vector2.RIGHT.rotated(marker.global_rotation).round()
+			var pos_logica = (marker.position / TILE_SIZE).floor()
+			
+			dict_cuarto["puertas"].append({
+				"posicion_local": pos_logica,
+				"direccion": direccion_limpia
+			})
+			
+			if not direccion_limpia in dict_cuarto["direcciones_soportadas"]:
+				dict_cuarto["direcciones_soportadas"].append(direccion_limpia)
 
 func _escanear_tiles_y_limites(dict_cuarto : Dictionary):
 	var capas_tilemap = find_children("*", "TileMapLayer")

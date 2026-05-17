@@ -1,0 +1,30 @@
+[gd_scene format=3 uid="uid://do7icrkr8xgmw"]
+
+[ext_resource type="Script" uid="uid://cegf06yi7r4lb" path="res://scenes/panel_behavior.gd" id="1_ugrko"]
+[ext_resource type="Script" uid="uid://cwd7wp7jb3ly6" path="res://scenes/panel_step_1.gd" id="2_w42cn"]
+[ext_resource type="Texture2D" uid="uid://l1ypw4aypeo6" path="res://sprites/PanelSprites/Tornillo.png" id="3_30i7g"]
+[ext_resource type="Texture2D" uid="uid://daphfbv0qr36p" path="res://sprites/PanelSprites/Layer2.png" id="4_xcs0r"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_kn57l"]
+atlas = ExtResource("3_30i7g")
+region = Rect2(27, 30, 108, 100)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_30i7g"]
+atlas = ExtResource("4_xcs0r")
+
+[node name="Panel" type="Node2D" unique_id=220700073 node_paths=PackedStringArray("nodes_steps")]
+script = ExtResource("1_ugrko")
+nodes_steps = [null]
+
+[node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=1757597040]
+
+[node name="Step1" type="Node2D" parent="CanvasLayer" unique_id=1422003331]
+script = ExtResource("2_w42cn")
+torn = SubResource("AtlasTexture_kn57l")
+tapa = SubResource("AtlasTexture_30i7g")
+
+[node name="Step2" type="Node2D" parent="CanvasLayer" unique_id=1741765953]
+
+[node name="Step3" type="Node2D" parent="CanvasLayer" unique_id=435591460]
+
+[node name="Step4" type="Node2D" parent="CanvasLayer" unique_id=1379720560]

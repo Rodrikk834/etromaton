@@ -1,0 +1,16 @@
+[remap]
+
+importer="dialogue_manager"
+importer_version=15
+type="Resource"
+uid="uid://b05fskv71l251"
+path="res://.godot/imported/d_taser.dialogue-5369991656fd29f26032d3826f900632.tres"
+
+[deps]
+
+source_file="res://dialogs/d_taser.dialogue"
+dest_files=["res://.godot/imported/d_taser.dialogue-5369991656fd29f26032d3826f900632.tres"]
+
+[params]
+
+defaults=true

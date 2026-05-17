@@ -49,4 +49,5 @@ func Physics_Update(_delta: float):
 	var next_pos = NavigationAgent.get_next_path_position()
 	var direction = (next_pos - enemy.global_position).normalized()
 	enemy.velocity = direction * moveSpeed
+	enemy.rotation = (enemy.velocity.angle()+0.5*PI)
 	enemy.move_and_slide()

@@ -16,6 +16,7 @@ func _ready() -> void:
 		currentState = initialState
 
 func _process(delta: float) -> void:
+		
 	if currentState:
 		currentState.Update(delta)
 

@@ -1,7 +1,8 @@
-[gd_scene format=4 uid="uid://b82db8irehh83"]
+[gd_scene format=4 uid="uid://do1tvj1sckkcv"]
 
 [ext_resource type="Texture2D" uid="uid://bdi0k2vwuo0gu" path="res://tiles/Tileset - Jueguito.png" id="1_miw7m"]
-[ext_resource type="Script" uid="uid://bj2duf5m1vbh0" path="res://scripts/readRoom.gd" id="1_ngsjr"]
+[ext_resource type="Script" path="res://scripts/readRoom.gd" id="1_ngsjr"]
+[ext_resource type="TileSet" uid="uid://c45qxqrc7o51y" path="res://tiles/muebles.tres" id="3_drlj2"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_miw7m"]
 texture = ExtResource("1_miw7m")
@@ -174,8 +175,15 @@ tile_set = SubResource("TileSet_drlj2")
 z_index = 1
 texture_filter = 1
 position = Vector2(-8, -8)
-tile_map_data = PackedByteArray("AAD6//z/AQACAAIAAAADAPz/AQADAAIAAAADAAYAAQADAAMAAAD//wYAAQACAAMAAAD6////AQACAAMAAAADAAAAAQACAAAAAAADAAEAAQACAAAAAAADAAUAAQACAAAAAAD6//3/AQADAAEAAAD6//7/AQADAAEAAAD//wAAAQADAAEAAAD//wEAAQADAAEAAAD//wUAAQADAAEAAAD8//z/AQACAAEAAAD9//z/AQACAAEAAAD+//z/AQACAAEAAAD///z/AQACAAEAAAAAAPz/AQACAAEAAAABAPz/AQACAAEAAAACAPz/AQACAAEAAAD7//z/AQACAAEAAAD7////AQADAAAAAAD8////AQADAAAAAAD9////AQADAAAAAAD+////AQADAAAAAAA=")
+tile_map_data = PackedByteArray("AAD6//z/AQACAAIAAAADAPz/AQADAAIAAAADAAYAAQADAAMAAAD//wYAAQACAAMAAAADAAAAAQACAAAAAAADAAEAAQACAAAAAAADAAUAAQACAAAAAAD//wAAAQADAAEAAAD//wEAAQADAAEAAAD//wUAAQADAAEAAAD8//z/AQACAAEAAAD9//z/AQACAAEAAAD+//z/AQACAAEAAAD///z/AQACAAEAAAAAAPz/AQACAAEAAAABAPz/AQACAAEAAAACAPz/AQACAAEAAAD7//z/AQACAAEAAAD7////AQADAAAAAAD8////AQADAAAAAAD9////AQADAAAAAAD+////AQADAAAAAAD6/wAAAQACAAEAAAA=")
 tile_set = SubResource("TileSet_ok6yt")
+
+[node name="furniture" type="TileMapLayer" parent="." unique_id=2036811340]
+z_index = 1
+texture_filter = 5
+position = Vector2(-8, -8)
+tile_map_data = PackedByteArray("AAD9//3/AAAAAAAAAAD+//3/AAABAAAAAAD///3/AAAAAAAAAAAAAP3/AAABAAAAAAD9//7/AAAFAAQAAAD+//7/AAAFAAQAAAD///7/AAAFAAQAAAAAAP7/AAAFAAQAAAAAAAAAAAADAAAAAAAAAAEAAAADAAEAAAABAAAAAAAFAAAAAAABAAEAAAAFAAEAAAABAAIAAAADAAAAAAABAAMAAAADAAEAAAACAAIAAAAFAAAAAAACAAMAAAAFAAEAAAD//wYAAAACAAAAAAADAAYAAAACAAAAAAD6//z/AAACAAAAAAADAPz/AAACAAAAAAA=")
+tile_set = ExtResource("3_drlj2")
 
 [node name="doors" type="Node2D" parent="." unique_id=468363719]
 
@@ -192,3 +200,14 @@ position = Vector2(56, 48)
 
 [node name="door4" type="Marker2D" parent="doors" unique_id=983118453]
 position = Vector2(56, -32)
+
+[node name="door5" type="Marker2D" parent="doors" unique_id=1124515218]
+position = Vector2(-104, -32)
+rotation = 3.1415927
+
+[node name="containers" type="Node2D" parent="." unique_id=326362361]
+position = Vector2(-8, -8)
+
+[node name="container1" type="Marker2D" parent="containers" unique_id=187881088]
+position = Vector2(32, -40)
+rotation = 4.712389
