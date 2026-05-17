@@ -1,5 +1,6 @@
 [gd_scene format=3 uid="uid://ctciwf5uabn6l"]
 
+<<<<<<< Updated upstream
 [ext_resource type="Script" uid="uid://dwvveni5viii0" path="res://scripts/worldGenController.gd" id="1_6r1qt"]
 [ext_resource type="Script" path="res://scenes/cuartos_especiales.gd" id="1_vd6wd"]
 [ext_resource type="PackedScene" uid="uid://c8uykk3s4dguc" path="res://scenes/rooms/habitacion_1.tscn" id="2_8yh2u"]
@@ -29,65 +30,78 @@
 [ext_resource type="PackedScene" uid="uid://ckx4xmktbuuou" path="res://scenes/container.tscn" id="28_wr82n"]
 [ext_resource type="PackedScene" uid="uid://15ami8ai0cvu" path="res://scenes/inventory.tscn" id="29_up5pg"]
 [ext_resource type="PackedScene" uid="uid://dino4tyr5fyr1" path="res://scenes/robot_character.tscn" id="29_wr82n"]
+=======
+[ext_resource type="Script" path="res://scripts/inventoryAutoLoad.gd" id="1_esn7u"]
+[ext_resource type="Texture2D" path="res://sprites/backgroundinventory.png" id="2_sneai"]
+[ext_resource type="Script" path="res://scripts/itemsBehavior.gd" id="3_8yh2u"]
+[ext_resource type="Texture2D" path="res://sprites/Itemsinis.png" id="4_d2vo2"]
+[ext_resource type="Script" path="res://scripts/itemDescription.gd" id="5_o0lm6"]
+[ext_resource type="Script" path="res://scripts/ItemCreator.gd" id="6_3traa"]
+>>>>>>> Stashed changes
 
-[sub_resource type="Resource" id="Resource_q80np"]
-script = ExtResource("1_vd6wd")
-nombre_categoria = "labs"
-variantes = Array[PackedScene]([ExtResource("14_cdyvt"), ExtResource("15_ewawa")])
-metadata/_custom_type_script = "uid://x5ol3g0ltt0c"
+[sub_resource type="AtlasTexture" id="AtlasTexture_uae8j"]
+atlas = ExtResource("4_d2vo2")
+region = Rect2(0, 32, 18, 18)
 
-[sub_resource type="Resource" id="Resource_txgxd"]
-script = ExtResource("1_vd6wd")
-nombre_categoria = "estudios"
-variantes = Array[PackedScene]([ExtResource("16_u77jt"), ExtResource("17_rt8ct"), ExtResource("18_ewq6b")])
-metadata/_custom_type_script = "uid://x5ol3g0ltt0c"
+[sub_resource type="AtlasTexture" id="AtlasTexture_g71ie"]
+atlas = ExtResource("4_d2vo2")
+region = Rect2(32, 16, 16, 16)
 
-[sub_resource type="NavigationPolygon" id="NavigationPolygon_1w873"]
-sample_partition_type = 1
-parsed_geometry_type = 1
-parsed_collision_mask = 1
-source_geometry_mode = 1
+[sub_resource type="AtlasTexture" id="AtlasTexture_sr8g6"]
+atlas = ExtResource("4_d2vo2")
+region = Rect2(0, 0, 16, 16)
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_sneai"]
-radius = 43.47
+[sub_resource type="AtlasTexture" id="AtlasTexture_s887n"]
+atlas = ExtResource("4_d2vo2")
+region = Rect2(16, 0, 16, 16)
 
-[node name="Node2D" type="Node2D" unique_id=97602548]
+[sub_resource type="AtlasTexture" id="AtlasTexture_ylenm"]
+atlas = ExtResource("4_d2vo2")
+region = Rect2(0, 16, 16, 16)
 
-[node name="rooms" type="Node2D" parent="." unique_id=301781827]
-texture_filter = 1
-script = ExtResource("1_6r1qt")
-escenas_iniciales = Array[PackedScene]([ExtResource("2_8yh2u"), ExtResource("3_d2vo2"), ExtResource("4_o0lm6")])
-escenas_cuartos = Array[PackedScene]([ExtResource("3_k0ot2"), ExtResource("3_jb6a7"), ExtResource("7_1w873"), ExtResource("8_vd6wd"), ExtResource("9_3yfn6"), ExtResource("10_cdyvt"), ExtResource("11_ewawa"), ExtResource("12_q80np")])
-categorias_especiales = Array[ExtResource("1_vd6wd")]([SubResource("Resource_q80np"), SubResource("Resource_txgxd")])
-escenas_relleno = Array[PackedScene]([ExtResource("19_q0kxy"), ExtResource("20_wr82n"), ExtResource("21_up5pg"), ExtResource("22_j2c5s")])
+[sub_resource type="AtlasTexture" id="AtlasTexture_fiysm"]
+atlas = ExtResource("4_d2vo2")
+region = Rect2(16, 16, 16, 16)
 
-[node name="NavigationRegion2D" type="NavigationRegion2D" parent="rooms" unique_id=196782045]
-position = Vector2(-8, -8)
-navigation_polygon = SubResource("NavigationPolygon_1w873")
+[sub_resource type="AtlasTexture" id="AtlasTexture_0df5h"]
+atlas = ExtResource("4_d2vo2")
+region = Rect2(48, 0, 16, 16)
 
-[node name="floors" type="TileMapLayer" parent="rooms/NavigationRegion2D" unique_id=1162078543]
-tile_set = ExtResource("3_ijdfw")
+[sub_resource type="AtlasTexture" id="AtlasTexture_p7iul"]
+atlas = ExtResource("4_d2vo2")
+region = Rect2(48, 0, 16, 16)
 
-[node name="walls" type="TileMapLayer" parent="rooms/NavigationRegion2D" unique_id=1969529535 groups=["navigation"]]
-tile_set = ExtResource("3_ijdfw")
-navigation_enabled = false
+[sub_resource type="AtlasTexture" id="AtlasTexture_td2ew"]
+atlas = ExtResource("4_d2vo2")
+region = Rect2(32, 0, 16, 16)
 
-[node name="RobotCharacter" parent="rooms/NavigationRegion2D" unique_id=150247689 instance=ExtResource("29_wr82n")]
-position = Vector2(8, 8)
-scale = Vector2(0.9999998, 0.9999998)
+[node name="Inventory" type="Node2D" unique_id=1916852366]
+script = ExtResource("1_esn7u")
 
-[node name="Player" parent="." unique_id=540015378 instance=ExtResource("24_txgxd")]
+[node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=129732290]
 
+<<<<<<< Updated upstream
 [node name="Item" type="Area2D" parent="." unique_id=424996310]
 position = Vector2(110, 39)
 scale = Vector2(0.1, 0.1)
 script = ExtResource("26_wr82n")
+=======
+[node name="InventoryBackSprite" type="TextureRect" parent="CanvasLayer" unique_id=730661704]
+offset_left = 132.0
+offset_top = 71.0
+offset_right = 1010.0
+offset_bottom = 592.0
+texture = ExtResource("2_sneai")
+expand_mode = 1
+>>>>>>> Stashed changes
 
-[node name="Sprite2D" type="Sprite2D" parent="Item" unique_id=16205054]
-position = Vector2(-3.9999924, 4.9999695)
-scale = Vector2(0.1, 0.1)
-texture = ExtResource("5_esn7u")
+[node name="Spawmer" type="Node2D" parent="CanvasLayer" unique_id=1625928419 node_paths=PackedStringArray("item_creator", "item_description")]
+script = ExtResource("3_8yh2u")
+boxSprite = SubResource("AtlasTexture_uae8j")
+item_creator = NodePath("../../ItemCreator")
+item_description = NodePath("../ItemDescription")
 
+<<<<<<< Updated upstream
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Item" unique_id=1742457022]
 position = Vector2(-4, 5)
 shape = SubResource("CircleShape2D_sneai")
@@ -95,3 +109,48 @@ shape = SubResource("CircleShape2D_sneai")
 [node name="Container" parent="." unique_id=754414297 instance=ExtResource("28_wr82n")]
 
 [node name="Inventory" parent="." unique_id=1916852366 instance=ExtResource("29_up5pg")]
+=======
+[node name="ItemDescription" type="Node2D" parent="CanvasLayer" unique_id=1500929256 node_paths=PackedStringArray("label_description", "label_name", "item_sprite", "items_behavior", "exit_button")]
+script = ExtResource("5_o0lm6")
+label_description = NodePath("ItemDescription")
+label_name = NodePath("ItemName")
+item_sprite = NodePath("ItemSprite")
+items_behavior = NodePath("../Spawmer")
+exit_button = NodePath("Button")
+
+[node name="ItemSprite" type="TextureRect" parent="CanvasLayer/ItemDescription" unique_id=935131686]
+offset_left = 228.0
+offset_top = 200.0
+offset_right = 487.0
+offset_bottom = 452.0
+expand_mode = 1
+
+[node name="ItemDescription" type="Label" parent="CanvasLayer/ItemDescription" unique_id=1211785534]
+offset_left = 539.0
+offset_top = 211.0
+offset_right = 915.0
+offset_bottom = 532.0
+text = "----------------"
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 2
+
+[node name="ItemName" type="Label" parent="CanvasLayer/ItemDescription" unique_id=1958495009]
+offset_left = 527.0
+offset_top = 164.0
+offset_right = 922.0
+offset_bottom = 187.0
+text = "----------------"
+horizontal_alignment = 1
+
+[node name="Button" type="Button" parent="CanvasLayer/ItemDescription" unique_id=1475189384]
+offset_left = 275.0
+offset_top = 471.0
+offset_right = 430.0
+offset_bottom = 512.0
+text = "Back"
+
+[node name="ItemCreator" type="Node" parent="." unique_id=1579872638]
+script = ExtResource("6_3traa")
+ItemsSprites = Array[Texture2D]([SubResource("AtlasTexture_g71ie"), SubResource("AtlasTexture_sr8g6"), SubResource("AtlasTexture_s887n"), SubResource("AtlasTexture_ylenm"), SubResource("AtlasTexture_fiysm"), SubResource("AtlasTexture_0df5h"), SubResource("AtlasTexture_p7iul"), SubResource("AtlasTexture_td2ew"), SubResource("AtlasTexture_td2ew"), SubResource("AtlasTexture_td2ew"), SubResource("AtlasTexture_td2ew")])
+>>>>>>> Stashed changes

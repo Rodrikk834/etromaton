@@ -19,7 +19,11 @@ config/icon="res://tiles/icon.svg"
 [autoload]
 
 DialogueManager="*uid://c3rodes2l3gxb"
+<<<<<<< Updated upstream
 PlayerInventory="*uid://lbrtp0ttlbkp"
+=======
+Inventory="*uid://lbrtp0ttlbkp"
+>>>>>>> Stashed changes
 
 [editor_plugins]
 
