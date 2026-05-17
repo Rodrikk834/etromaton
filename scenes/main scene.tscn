@@ -1,12 +1,58 @@
 [gd_scene format=3 uid="uid://ctciwf5uabn6l"]
 
-[ext_resource type="Script" uid="uid://dwvveni5viii0" path="res://scripts/worldGenController.gd" id="1_6r1qt"]
+[ext_resource type="Script" uid="uid://c6xgilu2y2igh" path="res://scripts/worldGenController.gd" id="1_6r1qt"]
+[ext_resource type="Script" uid="uid://x5ol3g0ltt0c" path="res://scenes/cuartos_especiales.gd" id="1_vd6wd"]
 [ext_resource type="PackedScene" uid="uid://c8uykk3s4dguc" path="res://scenes/rooms/habitacion_1.tscn" id="2_8yh2u"]
+[ext_resource type="Script" uid="uid://yn6eexbahhdf" path="res://scripts/player.gd" id="2_ijdfw"]
+[ext_resource type="Texture2D" uid="uid://d3k6gj0254vxo" path="res://tiles/icon.svg" id="2_k0ot2"]
 [ext_resource type="PackedScene" uid="uid://15cn32x8o1mr" path="res://scenes/rooms/habitacion_2.tscn" id="3_d2vo2"]
+[ext_resource type="PackedScene" uid="uid://c35p5r3qk0lto" path="res://scenes/taser_ray.tscn" id="3_esn7u"]
 [ext_resource type="TileSet" uid="uid://tir6tddggwiu" path="res://tiles/hola.tres" id="3_ijdfw"]
 [ext_resource type="PackedScene" uid="uid://dec2mp6etjb5u" path="res://scenes/rooms/room_2.tscn" id="3_jb6a7"]
 [ext_resource type="PackedScene" uid="uid://b3asmb7bybdy7" path="res://scenes/rooms/room_1.tscn" id="3_k0ot2"]
+[ext_resource type="Script" path="res://scripts/item.gd" id="4_jb6a7"]
 [ext_resource type="PackedScene" uid="uid://bcnoyf5524qd8" path="res://scenes/rooms/habitacion_3.tscn" id="4_o0lm6"]
+[ext_resource type="Texture2D" uid="uid://uqd71e7kkbee" path="res://tiles/CirculoBlanco.png" id="5_esn7u"]
+[ext_resource type="PackedScene" uid="uid://c0racvy6eraes" path="res://scenes/rooms/sala_1.tscn" id="7_1w873"]
+[ext_resource type="PackedScene" uid="uid://faohgt32o8qp" path="res://scenes/rooms/sala_2.tscn" id="8_vd6wd"]
+[ext_resource type="PackedScene" uid="uid://cg7b25pce1o3p" path="res://scenes/rooms/sala_3.tscn" id="9_3yfn6"]
+[ext_resource type="PackedScene" uid="uid://04syxo83cig1" path="res://scenes/rooms/cocina_1.tscn" id="10_cdyvt"]
+[ext_resource type="PackedScene" uid="uid://dgdgj45sj8vc4" path="res://scenes/rooms/cocina_2.tscn" id="11_ewawa"]
+[ext_resource type="PackedScene" uid="uid://b82db8irehh83" path="res://scenes/rooms/cocina_3.tscn" id="12_q80np"]
+[ext_resource type="PackedScene" uid="uid://b5l8pkt2b2cdt" path="res://scenes/rooms/lab_1.tscn" id="14_cdyvt"]
+[ext_resource type="PackedScene" uid="uid://1nnefem8k7h3" path="res://scenes/rooms/lab_2.tscn" id="15_ewawa"]
+[ext_resource type="PackedScene" uid="uid://dlb2shl771xg" path="res://scenes/rooms/estudio_1.tscn" id="16_u77jt"]
+[ext_resource type="PackedScene" uid="uid://d4gt6csjblud6" path="res://scenes/rooms/estudio_2.tscn" id="17_rt8ct"]
+[ext_resource type="PackedScene" uid="uid://bflx0h12f3t8l" path="res://scenes/rooms/estudio_3.tscn" id="18_ewq6b"]
+[ext_resource type="PackedScene" uid="uid://fngdtex7k26w" path="res://scenes/rooms/bano_1.tscn" id="19_q0kxy"]
+[ext_resource type="PackedScene" uid="uid://pehpqoyxlkfi" path="res://scenes/rooms/bano_2.tscn" id="20_wr82n"]
+[ext_resource type="PackedScene" uid="uid://ckpj7qp88wrrq" path="res://scenes/rooms/bano_3.tscn" id="21_up5pg"]
+[ext_resource type="PackedScene" uid="uid://wwgwliatgrkc" path="res://scenes/rooms/bano_4.tscn" id="22_j2c5s"]
+
+[sub_resource type="Resource" id="Resource_q80np"]
+script = ExtResource("1_vd6wd")
+nombre_categoria = "labs"
+variantes = Array[PackedScene]([ExtResource("14_cdyvt"), ExtResource("15_ewawa")])
+metadata/_custom_type_script = "uid://x5ol3g0ltt0c"
+
+[sub_resource type="Resource" id="Resource_txgxd"]
+script = ExtResource("1_vd6wd")
+nombre_categoria = "estudios"
+variantes = Array[PackedScene]([ExtResource("16_u77jt"), ExtResource("17_rt8ct"), ExtResource("18_ewq6b")])
+metadata/_custom_type_script = "uid://x5ol3g0ltt0c"
+
+[sub_resource type="NavigationPolygon" id="NavigationPolygon_1w873"]
+parsed_geometry_type = 1
+source_geometry_mode = 1
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_jb6a7"]
+size = Vector2(125, 125)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_k0ot2"]
+radius = 97.46
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_sneai"]
+radius = 43.47
 
 [node name="Node2D" type="Node2D" unique_id=97602548]
 
@@ -14,12 +60,58 @@
 texture_filter = 1
 script = ExtResource("1_6r1qt")
 escenas_iniciales = Array[PackedScene]([ExtResource("2_8yh2u"), ExtResource("3_d2vo2"), ExtResource("4_o0lm6")])
-escenas_cuartos = Array[PackedScene]([ExtResource("3_k0ot2"), ExtResource("3_jb6a7")])
+escenas_cuartos = Array[PackedScene]([ExtResource("3_k0ot2"), ExtResource("3_jb6a7"), ExtResource("7_1w873"), ExtResource("8_vd6wd"), ExtResource("9_3yfn6"), ExtResource("10_cdyvt"), ExtResource("11_ewawa"), ExtResource("12_q80np")])
+categorias_especiales = Array[ExtResource("1_vd6wd")]([SubResource("Resource_q80np"), SubResource("Resource_txgxd")])
+escenas_relleno = Array[PackedScene]([ExtResource("19_q0kxy"), ExtResource("20_wr82n"), ExtResource("21_up5pg"), ExtResource("22_j2c5s")])
 
-[node name="floors" type="TileMapLayer" parent="rooms" unique_id=1162078543]
+[node name="NavigationRegion2D" type="NavigationRegion2D" parent="rooms" unique_id=196782045]
 position = Vector2(-8, -8)
+navigation_polygon = SubResource("NavigationPolygon_1w873")
+
+[node name="floors" type="TileMapLayer" parent="rooms/NavigationRegion2D" unique_id=1162078543]
 tile_set = ExtResource("3_ijdfw")
 
-[node name="walls" type="TileMapLayer" parent="rooms" unique_id=1969529535]
-position = Vector2(-8, -8)
+[node name="walls" type="TileMapLayer" parent="rooms/NavigationRegion2D" unique_id=1969529535]
 tile_set = ExtResource("3_ijdfw")
+
+[node name="Player" type="CharacterBody2D" parent="." unique_id=1272999153]
+scale = Vector2(0.1, 0.1)
+script = ExtResource("2_ijdfw")
+bullet_scene = ExtResource("3_esn7u")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Player" unique_id=421983967]
+position = Vector2(0.5, -0.5)
+shape = SubResource("RectangleShape2D_jb6a7")
+
+[node name="Sprite2D" type="Sprite2D" parent="Player" unique_id=2058014291]
+rotation = 1.5707964
+texture = ExtResource("2_k0ot2")
+
+[node name="PickUpArea" type="Area2D" parent="Player" unique_id=488253357]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Player/PickUpArea" unique_id=463015488]
+shape = SubResource("CircleShape2D_k0ot2")
+
+[node name="ShootPos" type="Node2D" parent="Player" unique_id=158454658]
+position = Vector2(89, -1)
+
+[node name="Camera2D" type="Camera2D" parent="Player" unique_id=1317023274]
+zoom = Vector2(3, 3)
+position_smoothing_enabled = true
+
+[node name="Item" type="Area2D" parent="." unique_id=424996310]
+position = Vector2(110, 39)
+scale = Vector2(0.1, 0.1)
+script = ExtResource("4_jb6a7")
+
+[node name="Sprite2D" type="Sprite2D" parent="Item" unique_id=16205054]
+position = Vector2(-3.9999924, 4.9999695)
+scale = Vector2(0.1, 0.1)
+texture = ExtResource("5_esn7u")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Item" unique_id=1742457022]
+position = Vector2(-4, 5)
+shape = SubResource("CircleShape2D_sneai")
+
+[connection signal="area_entered" from="Player/PickUpArea" to="Player" method="_on_pick_up_area_area_entered"]
+[connection signal="area_exited" from="Player/PickUpArea" to="Player" method="_on_pick_up_area_area_exited"]
