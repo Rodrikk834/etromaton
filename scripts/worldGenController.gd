@@ -96,7 +96,7 @@ func _actualizar_mapa_navegacion():
 	nav_poly.parsed_geometry_type = NavigationPolygon.PARSED_GEOMETRY_BOTH
 	nav_poly.source_geometry_mode = NavigationPolygon.SOURCE_GEOMETRY_ROOT_NODE_CHILDREN
 	
-	nav_poly.agent_radius = 10.0 
+	nav_poly.agent_radius = 10
 	nav_poly.cell_size = 4.0 
 	
 	region_navegacion.bake_navigation_polygon()
