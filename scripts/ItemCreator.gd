@@ -6,42 +6,42 @@ func create_item_by_id(id: int) -> Item:
 	
 	var items_data = {
 		0: {
-			"name": "Linterna",
+			"name": "Flashlight",
 			"desc": "pos nomas"
 		},
 		
 		1: {
-			"name": "Desatornillador",
+			"name": "Screwdriver",
 			"desc": "pos nomas"
 		},
 		
 		2: {
-			"name": "Pinzas",
+			"name": "Tweezers",
 			"desc": "pos nomas"
 		},
 		
 		3: {
-			"name": "Instrucciones A",
+			"name": "Keys",
 			"desc": "pos nomas"
 		},
 		
 		4: {
-			"name": "Notas",
-			"desc": "pos nomas"
-		},
-		
-		5: {
-			"name": "Llaves",
-			"desc": "pos nomas"
-		},
-		
-		6: {
 			"name": "Taser",
 			"desc": "pos nomas"
 		},
 		
+		5: {
+			"name": "Instructions1",
+			"desc": "pos nomas"
+		},
+		
+		6: {
+			"name": "Instructions2",
+			"desc": "pos nomas"
+		},
+		
 		7: {
-			"name": "Instrucciones B",
+			"name": "Notes",
 			"desc": "pos nomas"
 		}
 	}

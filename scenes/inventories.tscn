@@ -1,0 +1,152 @@
+[gd_scene format=3 uid="uid://m8uoo7b5pesr"]
+
+[ext_resource type="Texture2D" uid="uid://ckre7t5y3m5vr" path="res://sprites/backgroundinventory.png" id="1_sbxsq"]
+[ext_resource type="Script" uid="uid://qbqu36hqw8wy" path="res://scripts/itemsBehavior.gd" id="2_pbus7"]
+[ext_resource type="Texture2D" uid="uid://bgfq5u6eprrfm" path="res://sprites/Itemsinis.png" id="3_fimdd"]
+[ext_resource type="Script" uid="uid://cdxjluw5372we" path="res://scripts/itemDescription.gd" id="4_5jlbr"]
+[ext_resource type="Script" uid="uid://cwpe1wpgukn7l" path="res://containerBehavior.gd" id="5_5jlbr"]
+[ext_resource type="Script" uid="uid://cw6g33be2urx3" path="res://itemOptions.gd" id="6_lp87c"]
+[ext_resource type="Script" uid="uid://bqv8ua05mqsba" path="res://scripts/ItemCreator.gd" id="7_veesh"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_lp87c"]
+atlas = ExtResource("3_fimdd")
+region = Rect2(0, 32, 18, 18)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6fae3"]
+atlas = ExtResource("3_fimdd")
+region = Rect2(0, 32, 18, 18)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_g71ie"]
+atlas = ExtResource("3_fimdd")
+region = Rect2(32, 16, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_sr8g6"]
+atlas = ExtResource("3_fimdd")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_s887n"]
+atlas = ExtResource("3_fimdd")
+region = Rect2(16, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ylenm"]
+atlas = ExtResource("3_fimdd")
+region = Rect2(0, 16, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fiysm"]
+atlas = ExtResource("3_fimdd")
+region = Rect2(16, 16, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0df5h"]
+atlas = ExtResource("3_fimdd")
+region = Rect2(48, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_p7iul"]
+atlas = ExtResource("3_fimdd")
+region = Rect2(48, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_td2ew"]
+atlas = ExtResource("3_fimdd")
+region = Rect2(32, 0, 16, 16)
+
+[node name="Inventories" type="Node2D" unique_id=1398397223]
+
+[node name="Inventory" type="Node2D" parent="." unique_id=1668622814]
+
+[node name="CanvasLayer" type="CanvasLayer" parent="Inventory" unique_id=163739217]
+
+[node name="InventoryBackSprite" type="TextureRect" parent="Inventory/CanvasLayer" unique_id=708829910]
+offset_left = 132.0
+offset_top = 71.0
+offset_right = 1010.0
+offset_bottom = 592.0
+texture = ExtResource("1_sbxsq")
+expand_mode = 1
+
+[node name="Spawmer" type="Node2D" parent="Inventory/CanvasLayer" unique_id=1836594733 node_paths=PackedStringArray("item_creator", "item_description")]
+script = ExtResource("2_pbus7")
+boxSprite = SubResource("AtlasTexture_lp87c")
+item_creator = NodePath("../../../ItemCreator")
+item_description = NodePath("../ItemDescription")
+
+[node name="ItemDescription" type="Node2D" parent="Inventory/CanvasLayer" unique_id=214313473 node_paths=PackedStringArray("label_description", "label_name", "item_sprite", "items_behavior")]
+script = ExtResource("4_5jlbr")
+label_description = NodePath("ItemDescription")
+label_name = NodePath("ItemName")
+item_sprite = NodePath("ItemSprite")
+items_behavior = NodePath("../Spawmer")
+
+[node name="ItemSprite" type="TextureRect" parent="Inventory/CanvasLayer/ItemDescription" unique_id=1985604311]
+offset_left = 215.0
+offset_top = 194.0
+offset_right = 474.0
+offset_bottom = 446.0
+expand_mode = 1
+
+[node name="ItemDescription" type="Label" parent="Inventory/CanvasLayer/ItemDescription" unique_id=1053502940]
+offset_left = 559.0
+offset_top = 272.0
+offset_right = 878.0
+offset_bottom = 431.0
+text = "----------------"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="ItemName" type="Label" parent="Inventory/CanvasLayer/ItemDescription" unique_id=1505542317]
+offset_left = 526.0
+offset_top = 195.0
+offset_right = 921.0
+offset_bottom = 218.0
+text = "----------------"
+horizontal_alignment = 1
+
+[node name="Containers" type="Node2D" parent="." unique_id=1433658306]
+
+[node name="CanvasLayer" type="CanvasLayer" parent="Containers" unique_id=1919339734]
+
+[node name="InventoryBackSprite" type="TextureRect" parent="Containers/CanvasLayer" unique_id=1520279096]
+offset_left = 132.0
+offset_top = 71.0
+offset_right = 1010.0
+offset_bottom = 592.0
+texture = ExtResource("1_sbxsq")
+expand_mode = 1
+
+[node name="SpawmerContainer" type="Node2D" parent="Containers/CanvasLayer" unique_id=444276072 node_paths=PackedStringArray("item_creator", "item_options")]
+script = ExtResource("5_5jlbr")
+boxSprite = SubResource("AtlasTexture_6fae3")
+item_creator = NodePath("../../../ItemCreator")
+item_options = NodePath("../ItemOptions")
+
+[node name="ItemOptions" type="Node2D" parent="Containers/CanvasLayer" unique_id=1012391528 node_paths=PackedStringArray("label_name", "item_sprite", "items_behavior", "take_button", "inventory")]
+script = ExtResource("6_lp87c")
+label_name = NodePath("ItemName")
+item_sprite = NodePath("ItemSprite")
+items_behavior = NodePath("../SpawmerContainer")
+take_button = NodePath("Button")
+inventory = NodePath("../../../Inventory/CanvasLayer/Spawmer")
+
+[node name="ItemSprite" type="TextureRect" parent="Containers/CanvasLayer/ItemOptions" unique_id=255233199]
+offset_left = 215.0
+offset_top = 194.0
+offset_right = 474.0
+offset_bottom = 446.0
+expand_mode = 1
+
+[node name="ItemName" type="Label" parent="Containers/CanvasLayer/ItemOptions" unique_id=1224389059]
+offset_left = 522.0
+offset_top = 248.0
+offset_right = 917.0
+offset_bottom = 271.0
+text = "----------------"
+horizontal_alignment = 1
+
+[node name="Button" type="Button" parent="Containers/CanvasLayer/ItemOptions" unique_id=1376520474]
+offset_left = 619.0
+offset_top = 342.0
+offset_right = 822.0
+offset_bottom = 394.0
+text = "Take Item"
+
+[node name="ItemCreator" type="Node" parent="." unique_id=1276835559]
+script = ExtResource("7_veesh")
+ItemsSprites = Array[Texture2D]([SubResource("AtlasTexture_g71ie"), SubResource("AtlasTexture_sr8g6"), SubResource("AtlasTexture_s887n"), SubResource("AtlasTexture_ylenm"), SubResource("AtlasTexture_fiysm"), SubResource("AtlasTexture_0df5h"), SubResource("AtlasTexture_p7iul"), SubResource("AtlasTexture_td2ew")])

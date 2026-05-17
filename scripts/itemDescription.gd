@@ -19,6 +19,8 @@ func quit_description() -> void:
 
 func _ready() -> void:
 	quit_description()
+	label_name.add_theme_font_size_override("font_size", 32)
+	label_description.add_theme_font_size_override("font_size", 20)
 
 func _input(event):
 	if event.is_action_pressed("ui_cancel"):

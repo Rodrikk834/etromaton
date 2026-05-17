@@ -1,26 +1,64 @@
 [gd_scene format=3 uid="uid://15ami8ai0cvu"]
 
 [ext_resource type="Texture2D" uid="uid://ckre7t5y3m5vr" path="res://sprites/backgroundinventory.png" id="1_hj2ta"]
+[ext_resource type="Script" uid="uid://ci2a4g2nyhmk2" path="res://scenes/inventoryAutoLoad.gd" id="1_uae8j"]
 [ext_resource type="Script" uid="uid://qbqu36hqw8wy" path="res://scripts/itemsBehavior.gd" id="2_53g1v"]
-[ext_resource type="Script" uid="uid://cdxjluw5372we" path="res://scenes/itemDescription.gd" id="2_s887n"]
-[ext_resource type="Texture2D" uid="uid://bpioq5ppkhitf" path="res://sprites/images.png" id="2_ty45s"]
-[ext_resource type="Texture2D" uid="uid://srsd84e08au3" path="res://sprites/cuadroblanco.png" id="4_uae8j"]
+[ext_resource type="Script" uid="uid://cdxjluw5372we" path="res://scripts/itemDescription.gd" id="2_s887n"]
 [ext_resource type="Script" uid="uid://bqv8ua05mqsba" path="res://scripts/ItemCreator.gd" id="4_yyk2a"]
-[ext_resource type="Texture2D" uid="uid://cy5hkd0jrc2ie" path="res://sprites/taser.png" id="5_uae8j"]
+[ext_resource type="Texture2D" uid="uid://bgfq5u6eprrfm" path="res://sprites/Itemsinis.png" id="8_g71ie"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_uae8j"]
+atlas = ExtResource("8_g71ie")
+region = Rect2(0, 32, 18, 18)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_g71ie"]
+atlas = ExtResource("8_g71ie")
+region = Rect2(32, 16, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_sr8g6"]
+atlas = ExtResource("8_g71ie")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_s887n"]
+atlas = ExtResource("8_g71ie")
+region = Rect2(16, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ylenm"]
+atlas = ExtResource("8_g71ie")
+region = Rect2(0, 16, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fiysm"]
+atlas = ExtResource("8_g71ie")
+region = Rect2(16, 16, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0df5h"]
+atlas = ExtResource("8_g71ie")
+region = Rect2(48, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_p7iul"]
+atlas = ExtResource("8_g71ie")
+region = Rect2(48, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_td2ew"]
+atlas = ExtResource("8_g71ie")
+region = Rect2(32, 0, 16, 16)
 
 [node name="Inventory" type="Node2D" unique_id=1916852366]
+script = ExtResource("1_uae8j")
 
 [node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=129732290]
 
 [node name="InventoryBackSprite" type="TextureRect" parent="CanvasLayer" unique_id=730661704]
-offset_right = 1159.0
-offset_bottom = 657.0
+offset_left = 132.0
+offset_top = 71.0
+offset_right = 1010.0
+offset_bottom = 592.0
 texture = ExtResource("1_hj2ta")
 expand_mode = 1
 
 [node name="Spawmer" type="Node2D" parent="CanvasLayer" unique_id=1625928419 node_paths=PackedStringArray("item_creator", "item_description")]
 script = ExtResource("2_53g1v")
-boxSprite = ExtResource("4_uae8j")
+boxSprite = SubResource("AtlasTexture_uae8j")
 item_creator = NodePath("../../ItemCreator")
 item_description = NodePath("../ItemDescription")
 
@@ -32,27 +70,29 @@ item_sprite = NodePath("ItemSprite")
 items_behavior = NodePath("../Spawmer")
 
 [node name="ItemSprite" type="TextureRect" parent="CanvasLayer/ItemDescription" unique_id=935131686]
-offset_left = 162.0
-offset_top = 195.0
-offset_right = 421.0
-offset_bottom = 447.0
-texture = ExtResource("2_ty45s")
+offset_left = 215.0
+offset_top = 194.0
+offset_right = 474.0
+offset_bottom = 446.0
 expand_mode = 1
 
 [node name="ItemDescription" type="Label" parent="CanvasLayer/ItemDescription" unique_id=1211785534]
-offset_left = 537.0
-offset_top = 223.0
-offset_right = 839.0
-offset_bottom = 246.0
+offset_left = 559.0
+offset_top = 272.0
+offset_right = 878.0
+offset_bottom = 431.0
 text = "----------------"
+horizontal_alignment = 1
+vertical_alignment = 1
 
 [node name="ItemName" type="Label" parent="CanvasLayer/ItemDescription" unique_id=1958495009]
-offset_left = 634.0
-offset_top = 98.0
-offset_right = 905.0
-offset_bottom = 121.0
+offset_left = 526.0
+offset_top = 195.0
+offset_right = 921.0
+offset_bottom = 218.0
 text = "----------------"
+horizontal_alignment = 1
 
 [node name="ItemCreator" type="Node" parent="." unique_id=1579872638]
 script = ExtResource("4_yyk2a")
-ItemsSprites = Array[Texture2D]([ExtResource("2_ty45s"), ExtResource("5_uae8j"), ExtResource("2_ty45s"), ExtResource("5_uae8j"), ExtResource("2_ty45s"), ExtResource("5_uae8j"), ExtResource("2_ty45s"), ExtResource("5_uae8j")])
+ItemsSprites = Array[Texture2D]([SubResource("AtlasTexture_g71ie"), SubResource("AtlasTexture_sr8g6"), SubResource("AtlasTexture_s887n"), SubResource("AtlasTexture_ylenm"), SubResource("AtlasTexture_fiysm"), SubResource("AtlasTexture_0df5h"), SubResource("AtlasTexture_p7iul"), SubResource("AtlasTexture_td2ew")])

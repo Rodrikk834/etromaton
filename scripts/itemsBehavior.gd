@@ -7,7 +7,7 @@ extends Node2D
 const rows: int = 3
 const columns: int = 4
 const cellSize: Vector2 = Vector2(170, 170) # espacio entre celdas
-const origin: Vector2 = Vector2(150, 100) # esquina superior izquierda de la cuadrícula
+const origin: Vector2 = Vector2(320, 170) # esquina superior izquierda de la cuadrícula
 var index: int = 0
 
 var itemsInventory = {} #hash map to find items
@@ -25,19 +25,25 @@ func create_sprite(item_type: int) -> void:
 	var box := Sprite2D.new()
 	box.texture = boxSprite
 	box.position = pos
-	box.scale = Vector2(0.1, 0.1)
+	box.scale = Vector2(4, 4)
 	add_child(box)
 
 	# 2. obtener el Item
 	var item = item_creator.create_item_by_id(item_type)
 	itemsInventory[item_type] = item
+	
+	# revisar
+	print("Creado en el inventario: ", item.item_name)
 
 	# 3. poner el botoncito
 	var btn := TextureButton.new()
 	btn.texture_normal = item.item_sprite
-	btn.position = pos
+	btn.scale = Vector2(4, 4)
+
+	var size = btn.texture_normal.get_size() * btn.scale
+	btn.position = pos - size / 2
+
 	btn.z_index = 1
-	btn.scale = Vector2(0.1, 0.1)
 	add_child(btn)
 	
 	# Conectar el click
@@ -67,8 +73,12 @@ func is_on_inventory(item_type: int) -> bool:
 	#inventory.enter_inventory()
 
 func _ready() -> void:
-	create_sprite(1)
+	create_sprite(0)
 	create_sprite(2)
 	create_sprite(3)
 	create_sprite(4)
+	create_sprite(5)
+	create_sprite(5)
+	create_sprite(5)
+	create_sprite(5)
 	create_sprite(5)

@@ -15,12 +15,21 @@ run/main_scene="uid://ctciwf5uabn6l"
 config/features=PackedStringArray("4.6", "GL Compatibility")
 config/icon="res://tiles/icon.svg"
 
+[autoload]
+
+PlayerInventory="*uid://15ami8ai0cvu"
+
+[gui]
+
+theme/custom_font="uid://cjmso63pu0nuc"
+
 [physics]
 
 3d/physics_engine="Jolt Physics"
 
 [rendering]
 
+textures/canvas_textures/default_texture_filter=0
 rendering_device/driver.windows="d3d12"
 renderer/rendering_method="gl_compatibility"
 renderer/rendering_method.mobile="gl_compatibility"
