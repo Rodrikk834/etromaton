@@ -6,6 +6,7 @@ class_name RobotIdle
 @export var moveSpeed := 100.0
 @export var waitDuration := 2.0
 @export var detectionRadius := 150.0
+@export var animated_sprite : AnimatedSprite2D
 
 @export_category("Referencias")
 @export var enemy: CharacterBody2D
@@ -33,6 +34,7 @@ func Enter():
 	# 1. PEQUEÑA ESPERA INICIAL
 	# Le damos un frame de física para que el agente se vincule internamente 
 	# al mapa de navegación por defecto de Godot.
+	animated_sprite.play("idle")
 	if not NavigationAgent.is_node_ready():
 		await NavigationAgent.ready
 	await get_tree().physics_frame

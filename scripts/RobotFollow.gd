@@ -1,6 +1,7 @@
 extends State
 class_name RobotFollow
 
+@export var animated_sprite : AnimatedSprite2D
 @export var moveSpeed := 90.0
 @export var enemy: CharacterBody2D
 @export var NavigationAgent: NavigationAgent2D
@@ -19,6 +20,8 @@ func _ready():
 		push_error("RobotFollow: No se encontró al jugador en el grupo 'player'.")
 
 func Enter():
+	animated_sprite.play("follow")
+
 	if player != null:
 		NavigationAgent.target_position = player.global_position
 

@@ -25,6 +25,8 @@ func interact() -> void:
 	if nearby_item != null:
 		if nearby_item.has_method("pickup"):
 			nearby_item.pickup(self)
+		elif nearby_item.has_method("interact"):
+			nearby_item.interact(self)
 
 func unlock_shooting():
 	can_shoot = true
@@ -37,7 +39,7 @@ func shoot():
 
 
 func _on_pick_up_area_area_entered(area: Area2D) -> void:
-	if area.has_method("pickup"):
+	if area.has_method("pickup") or area.has_method("interact"):
 		nearby_item = area
 
 

@@ -19,6 +19,7 @@ config/icon="res://tiles/icon.svg"
 
 player=""
 navigation=""
+Robot=""
 
 [input]
 

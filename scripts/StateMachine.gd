@@ -27,12 +27,19 @@ func on_child_transition(state, new_state_name):
 	if state != currentState:
 		return
 	
+	change_state(new_state_name)
+
+func change_state(new_state_name: String):
+	print("Intentando cambiar a: ", new_state_name)
+
 	var new_state : State = states.get(new_state_name.to_lower())
+	
 	if !new_state:
 		return
 	
 	if currentState:
 		currentState.Exit()
 		
-	new_state.Enter()
 	currentState = new_state
+	new_state.Enter()
+	print("Estado actual: ", currentState.name)
