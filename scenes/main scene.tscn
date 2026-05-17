@@ -7,6 +7,20 @@
 [ext_resource type="PackedScene" uid="uid://dec2mp6etjb5u" path="res://scenes/rooms/room_2.tscn" id="3_jb6a7"]
 [ext_resource type="PackedScene" uid="uid://b3asmb7bybdy7" path="res://scenes/rooms/room_1.tscn" id="3_k0ot2"]
 [ext_resource type="PackedScene" uid="uid://bcnoyf5524qd8" path="res://scenes/rooms/habitacion_3.tscn" id="4_o0lm6"]
+[ext_resource type="Script" uid="uid://yn6eexbahhdf" path="res://scripts/player.gd" id="2_ijdfw"]
+[ext_resource type="Texture2D" uid="uid://d3k6gj0254vxo" path="res://tiles/icon.svg" id="2_k0ot2"]
+[ext_resource type="PackedScene" uid="uid://c35p5r3qk0lto" path="res://scenes/taser_ray.tscn" id="3_esn7u"]
+[ext_resource type="Script" uid="uid://de46tfjhycpda" path="res://scripts/item.gd" id="4_jb6a7"]
+[ext_resource type="Texture2D" uid="uid://uqd71e7kkbee" path="res://tiles/CirculoBlanco.png" id="5_esn7u"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_jb6a7"]
+size = Vector2(125, 125)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_k0ot2"]
+radius = 97.46
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_sneai"]
+radius = 43.47
 
 [node name="Node2D" type="Node2D" unique_id=97602548]
 
@@ -23,3 +37,39 @@ tile_set = ExtResource("3_ijdfw")
 [node name="walls" type="TileMapLayer" parent="rooms" unique_id=1969529535]
 position = Vector2(-8, -8)
 tile_set = ExtResource("3_ijdfw")
+[node name="Player" type="CharacterBody2D" parent="." unique_id=1272999153]
+position = Vector2(359, 319)
+script = ExtResource("2_ijdfw")
+bullet_scene = ExtResource("3_esn7u")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Player" unique_id=421983967]
+position = Vector2(0.5, -0.5)
+shape = SubResource("RectangleShape2D_jb6a7")
+
+[node name="Sprite2D" type="Sprite2D" parent="Player" unique_id=2058014291]
+rotation = 1.5707964
+texture = ExtResource("2_k0ot2")
+
+[node name="PickUpArea" type="Area2D" parent="Player" unique_id=488253357]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Player/PickUpArea" unique_id=463015488]
+shape = SubResource("CircleShape2D_k0ot2")
+
+[node name="ShootPos" type="Node2D" parent="Player" unique_id=158454658]
+position = Vector2(89, -1)
+
+[node name="Item" type="Area2D" parent="." unique_id=424996310]
+position = Vector2(833, 325)
+script = ExtResource("4_jb6a7")
+
+[node name="Sprite2D" type="Sprite2D" parent="Item" unique_id=16205054]
+position = Vector2(-3.9999924, 4.9999695)
+scale = Vector2(0.1, 0.1)
+texture = ExtResource("5_esn7u")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Item" unique_id=1742457022]
+position = Vector2(-4, 5)
+shape = SubResource("CircleShape2D_sneai")
+
+[connection signal="area_entered" from="Player/PickUpArea" to="Player" method="_on_pick_up_area_area_entered"]
+[connection signal="area_exited" from="Player/PickUpArea" to="Player" method="_on_pick_up_area_area_exited"]
