@@ -1,9 +1,9 @@
 [gd_scene format=4 uid="uid://cka2btgitogwj"]
 
 [ext_resource type="Texture2D" uid="uid://bdi0k2vwuo0gu" path="res://tiles/Tileset - Jueguito.png" id="1_0qu84"]
-[ext_resource type="Script" path="res://scripts/readRoom.gd" id="1_ydxyi"]
-[ext_resource type="TileSet" uid="uid://cxmscnrbinfcj" path="res://tiles/hola.tres" id="3_g3r16"]
-[ext_resource type="TileSet" uid="uid://c45qxqrc7o51y" path="res://tiles/muebles.tres" id="4_vcp7c"]
+[ext_resource type="Script" uid="uid://bj2duf5m1vbh0" path="res://scripts/readRoom.gd" id="1_ydxyi"]
+[ext_resource type="TileSet" uid="uid://tir6tddggwiu" path="res://tiles/hola.tres" id="3_g3r16"]
+[ext_resource type="TileSet" uid="uid://b3bhr3aer3sbk" path="res://tiles/muebles.tres" id="4_vcp7c"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_0qu84"]
 texture = ExtResource("1_0qu84")
@@ -107,7 +107,7 @@ tile_set = ExtResource("3_g3r16")
 z_index = 1
 texture_filter = 5
 position = Vector2(-8, -8)
-tile_map_data = PackedByteArray("AAD+/wEAAAAAAAQAAAD+/wIAAAAAAAUAAAD//wEAAAABAAQAAAD//wIAAAABAAUAAAD9/wEAAAAFAAQAAAD9/wIAAAAFAAQAAAD+/wAAAAAFAAQAAAD//wAAAAAFAAQAAAAAAAEAAAAFAAQAAAAAAAIAAAAFAAQAAAD//wMAAAAFAAQAAAD+/wMAAAAFAAQAAAACAAMAAAADAAMAAAADAAMAAAAEAAMAAAD7////AAADAAMAAAD8////AAAEAAMAAAD8/wcAAAADAAIAAAD9/wcAAAAEAAIAAAD///3/AAADAAIAAAAAAP3/AAAEAAIAAAAAAAcAAAADAAIAAAABAAcAAAAEAAIAAAACAAcAAAADAAIAAAADAAcAAAAEAAIAAAA=")
+tile_map_data = PackedByteArray("AAD+/wEAAAAAAAQAAAD+/wIAAAAAAAUAAAD//wEAAAABAAQAAAD//wIAAAABAAUAAAACAAMAAAADAAMAAAADAAMAAAAEAAMAAAD7////AAADAAMAAAD8////AAAEAAMAAAD8/wcAAAADAAIAAAD9/wcAAAAEAAIAAAD///3/AAADAAIAAAAAAP3/AAAEAAIAAAAAAAcAAAADAAIAAAABAAcAAAAEAAIAAAACAAcAAAADAAIAAAADAAcAAAAEAAIAAAA=")
 tile_set = ExtResource("4_vcp7c")
 
 [node name="doors" type="Node2D" parent="." unique_id=1003071487]

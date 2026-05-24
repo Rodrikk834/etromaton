@@ -12,11 +12,12 @@ script = ExtResource("1_cjjsl")
 items_dentro = Array[ExtResource("2_184ql")]([null])
 
 [node name="TileMapLayer" type="TileMapLayer" parent="." unique_id=1463330162]
+position = Vector2(0, -16)
 tile_map_data = PackedByteArray(0, 0, 0, 0, 0, 0, 0, 0, 6, 0, 13, 0, 0, 0, 0, 0, 255, 255, 0, 0, 6, 0, 12, 0, 0, 0)
 tile_set = ExtResource("1_1syo6")
 
 [node name="StaticBody2D" type="StaticBody2D" parent="." unique_id=2127486448]
-position = Vector2(8, 8)
+position = Vector2(0, -8)
 input_pickable = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D" unique_id=24858615]
