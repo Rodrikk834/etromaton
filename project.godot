@@ -11,7 +11,7 @@ config_version=5
 [application]
 
 config/name="cosa de terror"
-run/main_scene="uid://ctciwf5uabn6l"
+run/main_scene="uid://yh13ftuqvss4"
 config/features=PackedStringArray("4.6", "GL Compatibility")
 config/icon="res://tiles/icon.svg"
 "<<<<<<<HEAD[autoload]PlayerInventory"="*uid://15ami8ai0cvu"
@@ -89,3 +89,4 @@ textures/canvas_textures/default_texture_filter=0
 rendering_device/driver.windows="d3d12"
 renderer/rendering_method="gl_compatibility"
 renderer/rendering_method.mobile="gl_compatibility"
+environment/defaults/default_clear_color=Color(0, 0, 0, 1)

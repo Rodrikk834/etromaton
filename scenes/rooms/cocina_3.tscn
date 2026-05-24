@@ -1,8 +1,8 @@
 [gd_scene format=4 uid="uid://do1tvj1sckkcv"]
 
 [ext_resource type="Texture2D" uid="uid://bdi0k2vwuo0gu" path="res://tiles/Tileset - Jueguito.png" id="1_miw7m"]
-[ext_resource type="Script" path="res://scripts/readRoom.gd" id="1_ngsjr"]
-[ext_resource type="TileSet" uid="uid://c45qxqrc7o51y" path="res://tiles/muebles.tres" id="3_drlj2"]
+[ext_resource type="Script" uid="uid://bj2duf5m1vbh0" path="res://scripts/readRoom.gd" id="1_ngsjr"]
+[ext_resource type="TileSet" uid="uid://b3bhr3aer3sbk" path="res://tiles/muebles.tres" id="3_drlj2"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_miw7m"]
 texture = ExtResource("1_miw7m")
@@ -182,7 +182,7 @@ tile_set = SubResource("TileSet_ok6yt")
 z_index = 1
 texture_filter = 5
 position = Vector2(-8, -8)
-tile_map_data = PackedByteArray("AAD9//3/AAAAAAAAAAD+//3/AAABAAAAAAD///3/AAAAAAAAAAAAAP3/AAABAAAAAAD9//7/AAAFAAQAAAD+//7/AAAFAAQAAAD///7/AAAFAAQAAAAAAP7/AAAFAAQAAAAAAAAAAAADAAAAAAAAAAEAAAADAAEAAAABAAAAAAAFAAAAAAABAAEAAAAFAAEAAAABAAIAAAADAAAAAAABAAMAAAADAAEAAAACAAIAAAAFAAAAAAACAAMAAAAFAAEAAAD//wYAAAACAAAAAAADAAYAAAACAAAAAAD6//z/AAACAAAAAAADAPz/AAACAAAAAAA=")
+tile_map_data = PackedByteArray("AAD9//3/AAAAAAAAAAD+//3/AAABAAAAAAD///3/AAAAAAAAAAAAAP3/AAABAAAAAAAAAAAAAAADAAAAAAAAAAEAAAADAAEAAAABAAAAAAAFAAAAAAABAAEAAAAFAAEAAAABAAIAAAADAAAAAAABAAMAAAADAAEAAAACAAIAAAAFAAAAAAACAAMAAAAFAAEAAAD//wYAAAACAAAAAAADAAYAAAACAAAAAAD6//z/AAACAAAAAAADAPz/AAACAAAAAAA=")
 tile_set = ExtResource("3_drlj2")
 
 [node name="doors" type="Node2D" parent="." unique_id=468363719]

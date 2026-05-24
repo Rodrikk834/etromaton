@@ -359,9 +359,6 @@ func _construir_pasillos_astar():
 					var pos_pasillo = Vector2(punto.x + x, punto.y + y)
 					if not grid.has(pos_pasillo): grid[pos_pasillo] = {}
 					
-					if grid[pos_pasillo].has("walls"):
-						grid[pos_pasillo].erase("walls")
-						
 					if not grid[pos_pasillo].has("floors"):
 						grid[pos_pasillo]["floors"] = piso_usar
 						celdas_pasillo.append({

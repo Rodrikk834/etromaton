@@ -1,8 +1,8 @@
 [gd_scene format=4 uid="uid://dw7blhywj7sgt"]
 
 [ext_resource type="Texture2D" uid="uid://bdi0k2vwuo0gu" path="res://tiles/Tileset - Jueguito.png" id="1_g3f8b"]
-[ext_resource type="Script" path="res://scripts/readRoom.gd" id="1_p2x7v"]
-[ext_resource type="TileSet" uid="uid://c45qxqrc7o51y" path="res://tiles/muebles.tres" id="3_y7eao"]
+[ext_resource type="Script" uid="uid://bj2duf5m1vbh0" path="res://scripts/readRoom.gd" id="1_p2x7v"]
+[ext_resource type="TileSet" uid="uid://b3bhr3aer3sbk" path="res://tiles/muebles.tres" id="3_y7eao"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_p2x7v"]
 texture = ExtResource("1_g3f8b")
